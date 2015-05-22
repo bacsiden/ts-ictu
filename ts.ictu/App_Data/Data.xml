@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Notes>
+  <BackupDatabase>
+    <Note>
+      <ID>1</ID>
+      <Name>Backup_2014818_22-25-39.bak</Name>
+      <FilePath>C:\BACKUP\Backup_2014818_22-25-39.bak</FilePath>
+      <Date>2014-08-18 22:25:41</Date>
+    </Note>
+    <Note>
+      <ID>2</ID>
+      <Name>Backup_2014818_23-4-26.bak</Name>
+      <FilePath>C:\BACKUP\Backup_2014818_23-4-26.bak</FilePath>
+      <Date>2014-08-18 23:04:28</Date>
+    </Note>
+  </BackupDatabase>
+  <Images />
+</Notes>

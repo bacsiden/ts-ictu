@@ -1,0 +1,42 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<ts.ictu.Post>
+<div class="row-fluid">
+    <div class="span12">
+        <h3>Bài viết</h3>
+        @Html.ActionLink("Thêm mới", "AdminEdit", null, new { @class = "btn btn-info addNewItem" })
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="row-fluid">
+                    <div class="wrap-selectTripInfo">
+                        <div class="span2">
+                            Trạng thái<br />
+                            <select name="loaiID" class="filter-post select-status" style="width:110px">
+                                <option value="1">Chờ duyệt</option>
+                                <option value="2">Đã duyệt</option>
+                                <option selected="selected" value="">Tất cả</option>
+                            </select>
+                        </div>
+                        <div class="span2">
+                            Tin nổi bật<br />
+                            <select name="noibat" class="filter-post select-noibat" style="width:90px">
+                                <option value="1">Nổi bật</option>
+                                <option selected="selected" value="">Tất cả</option>
+                            </select>
+                        </div>
+                        <div class="span4">
+                            Kênh tin
+                            <select name="loaiID" class="filter-post select-loai">
+                                @Html.Raw(ViewBag.dataLoai)
+                            </select>
+                        </div>
+                        <div class="cleardiv">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="wrap-AjaxPaging">
+            @Html.Partial("_AdminIndex", Model)
+        </div>
+    </div>
+</div>

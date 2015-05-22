@@ -1,0 +1,25 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<ts.ictu.Post>
+<div class="row-fluid">
+    <div class="span12">
+        @if (Model.Count > 0)
+        {
+            <h3>
+                Bài đăng bất động sản đã xóa</h3>
+            <div class="row-fluid">
+                <div class="row-fluid">
+                    <p style="margin-left: 7px;">
+                        @Html.ActionLink("Xóa toàn bộ", "DeleteAll", null, new { @class = "btn btn-danger confirmDelete" })
+                    </p>
+                </div>
+            </div>
+            <div id="wrap-AjaxPaging">
+                @Html.Partial("_ListDeleted", Model)
+            </div>
+        }
+        else
+        {
+            <h3>Không có bài đăng bất động sản nào trong thùng rác</h3>
+        }
+    </div>
+</div>

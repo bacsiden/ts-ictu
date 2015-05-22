@@ -1,0 +1,62 @@
+﻿@model ts.ictu.Post
+@using ts.ictu;
+@{
+    var db = DB.Entities;
+    var lsthot = db.Post.Where(m => m.Hot && m.Status == (int)PostStatus.Enabled).ToList();
+    var lstnew = db.Post.Where(m => !m.Hot && m.Status == (int)PostStatus.Enabled).OrderByDescending(m => m.ID).ToList();
+}
+<div class="imgbanner">
+    <img src="http://i.bnet.com/blogs/o3b-network-satellite-fleet-image.jpg">
+</div>
+<div class="news">
+    <h3>@Html.Action("Details", "Constant", new { id = "key1" })</h3>
+    <ul>
+        @foreach (var item in lsthot)
+        {
+            if (string.IsNullOrEmpty(item.ImageUrl))
+            {
+            <li class="item small clearfix">
+                <div class="postcontent100">
+                    <div class="subtitle fl">
+                    </div>
+                    <h4 class="title">
+                        <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })">@item.Title</a></h4>
+                </div>
+            </li>
+            }
+            else
+            {
+            <li class="item small clearfix">
+                <div class="img-new">
+                    <a title="@item.Title" href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })">
+                        <img class="avatar" title="@item.Title" alt="@item.Title" src="@item.ImageUrl">
+                        <span class="icon"></span></a>
+                </div>
+                <div class="postcontent">
+                    <div class="subtitle fl">
+                    </div>
+                    <h4 class="title">
+                        <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })">@item.Title</a></h4>
+                </div>
+            </li>
+            }
+        }
+    </ul>
+</div>
+<div class="imgbannertwo">
+    <img src="http://www.ictu.edu.vn/images/banners/img_tusachphapluat.png">
+</div>
+<div class="related-news bg-news related-news-top">
+    <h3  style="background-color: #b00600;">@(langid == 1 ? "Các tin mới nhận" : "Lastest released")</h3>
+    <ul>
+        @foreach (var item in lstnew)
+        {
+            <li class="item"><a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })"
+            title="@item.Title"> &nbsp @item.Title
+            </a></li>
+        }
+    </ul>
+</div>
+<div class="imgbannertwo">
+    <img src="http://www.ictu.edu.vn/images/banners/VBHC3.jpg">
+</div>

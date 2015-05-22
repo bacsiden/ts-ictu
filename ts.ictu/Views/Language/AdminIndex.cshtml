@@ -1,0 +1,43 @@
+﻿@model List<ts.ictu.mLanguage>
+<div class="row-fluid">
+    <div class="span12">
+        <h3>
+            Kênh tin</h3>
+        <div class="row-fluid">
+            @Html.Partial("_TopButton", "Language")
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    <input type="checkbox" name="" value="" class="checkAll" />
+                </th>
+                <th>
+                    Tiêu đề
+                </th>
+                <th>
+                    Code
+                </th>
+                <th>
+                    Logo
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="checkOwner" value="@item.ID" class="checkitem"/>
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.Title, "AdminEdit", new { id = item.ID })
+                    </td>
+                    <td>
+                        @(item.Code)
+                    </td>
+                    <td>
+                        @(item.Logo)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+﻿@model string
+@Html.ActionLink("Thêm mới", "AdminEdit", null, new { @class = "btn btn-info addNewItem" })
+<span>&nbsp;</span> <span>&nbsp;</span> @*@if ((bool)ViewBag.ShowButtonDelete)*@
+@if (true)
+{
+    @Html.ActionLink("Xóa", "AdminDelete", null, new { @class = "btn btn-danger DeleteItem confirmDelete" })
+}

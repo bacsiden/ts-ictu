@@ -1,0 +1,93 @@
+﻿@model ts.ictu.Post
+@{
+    ViewBag.Title = "System config";
+}
+<link href="@Url.Content("~/ContentFront/lib/fileinput/FileInput.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/ContentFront/lib/fileinput/fileInput.js")" type="text/javascript"></script>
+<script>
+    function getCkheight() {
+        return '50em';
+    }
+</script>
+<script src="/Content/ckeditor/ckeditor.js" type="text/javascript"></script>
+<h3>
+    Sửa bài viết</h3>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.Partial("_ShowSaveEdit", "Post")
+
+    @Html.ValidationSummary(true)                    
+
+    @Html.HiddenFor(model => model.ID)
+    <div class="control-group">
+        <label>
+            Kênh tin</label>
+        <div class="">
+            @Html.DropDownListFor(m => m.CateID, (SelectList)ViewBag.kenhtin)
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="Title">
+            Tiêu đề
+        </label>
+        <div class="">
+            <div class="span12">
+                @Html.TextBoxFor(model => model.Title, new { @class = "input-xxlarge" })
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label>
+            Ảnh đại diện</label>
+        <div class="">
+            <div class="span12">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    @if (Model != null && !string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <img src="@Model.ImageUrl" alt="Alternate Text" width="300" height="200" />
+                    }
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px;">
+                    </div>
+                    <div>
+                        <span class="btn btn-warning btn-file"><span class="fileinput-new">Chọn ảnh</span> <span
+                            class="fileinput-exists">Thay đổi</span><input type="file" name="file">
+                        </span><a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">
+                            Xóa ảnh</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="Summary">
+            Tóm tắt
+        </label>
+        <div class="">
+            <div class="span12">
+                @Html.TextAreaFor(model => model.Summary, new { @class = "input-xxlarge" })
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label>
+            Nội dung</label>
+        <div class="">
+            @Html.TextAreaFor(m => m.Content)
+            <script>
+                        CKEDITOR.replace('Content', {
+                            filebrowserUploadUrl: '@Url.Action("InsertFile", "Home", new { id = 0 })',
+                            filebrowserImageUploadUrl: '@Url.Action("InsertFile", new { controller = "Home", id = 1 })',
+                            filebrowserFlashUploadUrl: '@Url.Action("InsertFile", "Home", new { id = 2 })',
+                            filebrowserWindowWidth: 600,
+                            filebrowserWindowHeight: 400,
+                        });
+            </script>
+        </div>
+    </div>
+    <div class="form-actions">
+        @Html.Partial("_ShowSaveEdit", "Post")
+    </div>
+}
+@*</div>*@

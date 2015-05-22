@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ts.ictu.mMenu>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>Menu managerment</h3>
+            </div>
+            <div class="box-content">
+                <p style="margin-left: 7px;">
+                    @Html.ActionLink("Add Menu", "Create", null, new { @class = "btn btn-primary" })
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr class="table-flag-blue">
+                            <th>
+                                Menu name
+                            </th>
+                            <th>
+                                Loction
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (!item.ParentID.HasValue)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("- "+item.Title, "Edit", new { id = item.ID }, null)
+                                </td>
+                                <td>
+                                    @item.Oder
+                                </td>
+                                <td>
+                                    <a href="#" class="IsActivem" getID="@item.ID">
+                                        @if (item.IsActive == true)
+                                        { <span>Đã bật</span>}
+                                        else
+                                        {<span class='validation-summary-errors'>Đã tắt</span>}</a>
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "confirmDelete" })
+                                </td>
+                            </tr>
+                               foreach (var item1 in Model)
+                               {
+                                   if (item1.ParentID == item.ID)
+                                   {                            
+                            <tr>
+                                <td>
+                                    <a href="@Url.Action("Edit", new { id = item1.ID })">&nbsp;&nbsp;&nbsp;&nbsp;+ @item1.Title</a>
+                                </td>
+                                <td>
+                                    @item.Oder
+                                </td>
+                                <td>
+                                    <a href="#" class="IsActivem" getID="@item1.ID">
+                                        @if (item1.IsActive == true)
+                                        { <span>Đã bật</span>}
+                                        else
+                                        {<span class='validation-summary-errors'>Đã tắt</span>}</a>
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item1.ID }, new { @class = "confirmDelete" })
+                                </td>
+                            </tr>
+                                   }
+                               }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

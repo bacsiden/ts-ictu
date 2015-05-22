@@ -1,0 +1,65 @@
+﻿@model List<ts.ictu.Models.BackupModel>
+<!-- datatable -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("a.Backup").click(function () {
+            $(".BackupBox").html($('.waiting').html());
+            $.ajax({
+                url: "/BackupAndRestore/Backup",
+                success: function (data) {
+                    $("#BackupBox").html(data);
+                }
+            });
+        });
+    });
+</script>
+<!-- datatable functions -->
+<table class="table table-striped table-bordered dTableR">
+    <thead>
+        <tr>
+            <th style="width: 5%" class="center">
+                No
+            </th>
+            <th>
+                Filename
+            </th>
+            <th>
+                Backup date
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            int i = 1;
+            foreach (var item in Model)
+            {
+                
+            <tr class="rowlink">
+                <td style="width: 5%" class="center">
+                    @(i++)
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                 <a href="@Url.Action("PushToOnlineServer", new { name = item.Name })" class="border" title="Push to online server" >
+                            Push to online server</a> |
+                    <a href="javascript:void(0)" class="border" title="Restore database" onclick="Loading('@item.Name');">
+                        Restore</a> | <a href="@Url.Action("DownloadFile", new { name = item.Name})" class="border" title="Download file restore" >
+                            Download</a> | <a href="javascript:void(0)" class="border" title="Delete file restore" onclick="DeleteBackupData('@item.Name');">
+                                Delete</a>
+                </td>
+            </tr>
+            
+            }
+
+        }
+    </tbody>
+</table>

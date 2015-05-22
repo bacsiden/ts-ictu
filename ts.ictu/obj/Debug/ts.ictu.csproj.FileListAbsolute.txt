@@ -1,0 +1,7 @@
+E:\Freelancer\ts-ictu\ts.ictu\bin\ts.ictu.dll
+E:\Freelancer\ts-ictu\ts.ictu\bin\ts.ictu.pdb
+E:\Freelancer\ts-ictu\ts.ictu\bin\MvcPager.dll
+E:\Freelancer\ts-ictu\ts.ictu\bin\System.FtpClient.dll
+E:\Freelancer\ts-ictu\ts.ictu\obj\Debug\ts.ictu.csprojResolveAssemblyReference.cache
+E:\Freelancer\ts-ictu\ts.ictu\obj\Debug\ts.ictu.dll
+E:\Freelancer\ts-ictu\ts.ictu\obj\Debug\ts.ictu.pdb

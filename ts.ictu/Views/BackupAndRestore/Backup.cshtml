@@ -1,0 +1,43 @@
+﻿@model ts.ictu.Models.BackupModel
+@{
+    ViewBag.Title = "Backup database";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[name="Name"]').focus();
+    });
+</script>
+<div class="modal-header">
+    
+    <h3>
+        @ViewBag.Title</h3>
+</div>
+<!--End .modal-header-->
+@Html.ValidationSummary(true)
+<div class="modal-body" style="padding: 20px 15px 0px 15px;">
+    <div class="row-fluid">
+        <div class="span12">
+            @using (Html.BeginForm("Backup", "BackupAndRestore", new { Class = "form-horizontal well" }))
+            {                    
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Filename backup <span class="error">*</span></label>
+                        <div class="controls">
+                            @Html.TextBoxFor(m => m.Name, new { Class = "span10" })
+                            <span class="help-block">@Html.ValidationMessageFor(m => m.Name)</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn btn-info" type="submit" onclick="$('#choSaoLuu').html($('#dvloader').html());">
+                                Backup</button>
+                            <a href="@Url.Action("Index")" class="btn" data-dismiss="modal">Cancel</a> <span id="choSaoLuu">
+                            </span>
+                        </div>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div>
+</div>

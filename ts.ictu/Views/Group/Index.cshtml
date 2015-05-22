@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ts.ictu.mGroup>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>List Group user</h3>
+            </div>
+            <div class="box-content">
+                <p style="margin-left: 7px;">
+                    @Html.ActionLink("Add new group", "Create", null, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("View all User","Index", "Account", null, new { @class = "btn btn-primary" })
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr class="table-flag-blue">
+                            <th>
+                                Group name
+                            </th>
+                            <th>
+                                Role
+                            </th>
+                            <th>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.Title, "Edit", new { id = item.ID }, null)
+                                </td>
+                                <td>
+                                    @foreach (var role in item.mRole)
+                                    {
+                                        @role.Name <br />
+                                    }
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Add user to group", "UsersInGroup", new { id = item.ID })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Set role", "Role", new { id = item.ID })
+                                </td>
+                                @*<td>
+                                    @Html.ActionLink("Phân menu", "Menu", new { id = item.ID })
+                                </td>*@
+                                <td>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "confirmDelete" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@{
+    
+    var ctrler = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".nav-list li a.menu-item-a").each(function () {
+            var $this = $(this);
+            var obj = $this.parent().parent();
+            var urlMenu = $this.attr('href')+"/";
+            if (urlMenu.indexOf("/@ctrler/") > -1) {
+                $(".nav-list li.active").removeClass();
+                $this.parent().addClass("active");
+                if (obj.is('.submenu')) {
+                    obj.prev().children().next().next().removeClass("icon-angle-right").addClass("icon-angle-down");
+                    obj.prev().parent().addClass("active");
+                }
+            }
+        });
+    });
+</script>
+@*<li><a class="menu-item-a" href="/TripInfo"><span>Trip Info</span> </a></li>
+<li><a class="menu-item-a" href="/DriverInfo"><span>Driver Info</span> </a></li>
+<li><a class="menu-item-a" href="/CustomerInfo"><span>Customer Info</span> </a></li>
+<li><a class="menu-item-a" href="/FuelExpenses"><span>Fuel Expenses</span> </a></li>
+<li><a class="menu-item-a" href="/SplitExpenses"><span>Split Expenses</span> </a></li>
+<li><a class="menu-item-a" href="/OperatingExpenses"><span>Operating Expenses</span> </a></li>
+<li><a class="menu-item-a" href="/Owner"><span>Owners</span> </a></li>
+<li><a class="menu-item-a" href="/CompanyExpanses"><span>Company Expanses</span></a></li>
+<li><a class="menu-item-a" href="/Income"></i><span>Income</span> </a></li>
+<li><a class="menu-item-a" href="/Equipment"><span>Equipment</span> </a></li>
+<li><a class="menu-item-a" href="/Maintenance"><span>Maintenance</span> </a></li>
+<li><a class="menu-item-a" href="/Violations"><span>Violations</span> </a></li>
+<li><a class="menu-item-a" href="/Report"><span>Report</span> </a></li>
+@if (User.Identity.Name.Equals(ts.ictu.Controllers.UserDAL.ADMIN))
+{
+    <li><a class="menu-item-a" href="/Account"><span>User Manager</span> </a></li>
+}
+@*<i class="icon-list"></i>*@

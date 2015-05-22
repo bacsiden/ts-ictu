@@ -1,0 +1,8 @@
+﻿@Html.ActionLink("Thêm mới", "NewOrEdit", null, new { @class = "btn btn-info addNewItem" })
+<span>&nbsp;</span>
+@Html.ActionLink("Chi tiết", "NewOrEdit", null, new { @class = "btn btn-info EditItem" })
+<span>&nbsp;</span> @*@if ((bool)ViewBag.ShowButtonDelete)*@
+@if (true)
+{
+    @Html.ActionLink("Xóa", "Delete", null, new { @class = "btn btn-danger DeleteItem confirmDelete" })
+}

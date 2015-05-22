@@ -1,0 +1,52 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <li class="user-profile"><a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
+        <img class="nav-user-photo" src="/Content/img/avatardefault.jpg" alt="Penny's Photo" />
+        <span class="hidden-phone" id="user_info"><span>@User.Identity.Name</span></span>
+        <i class="icon-caret-down"></i>
+        <!-- BEGIN User Dropdown -->
+        <ul class="dropdown-menu dropdown-navbar" id="user_menu">
+            @foreach (var item in ts.ictu.Common.GetListLanguage())
+            {
+                <li><a href="@("/" + item.Code + "/Cate/AdminIndex")"><i class="icon-off"></i>&nbsp @item.Title</a></li>
+            }
+            <li><a href="#ModalGeneral" role="button" data-toggle="modal" class="ChangePassWord">
+                <i class="icon-cog"></i>Đổi mật khẩu</a>
+                <li><a href="/Account/Logoff"><i class="icon-off"></i>Thoát </a></li>
+        </ul>
+        <!-- BEGIN User Dropdown --></li>
+}
+else
+{
+    <span class="user-profile"><a href="/Account/Logon">Đăng nhập</a></span>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ChangePassWord").click(function () {
+            $("#ModalGeneral").html($('.waiting').html());
+            $.ajax({
+                url: "/Account/ChangePassword",
+                type: "GET",
+                success: function (model) {
+                    if (model.indexOf("<!DOCTYPE html>") != -1) {
+                        var ShowStr = '<div class="modal-header"><button class="close" data-dismiss="modal">×</button><h3>Thông báo</h3></div><div class="modal-body"><p class="validation-summary-errors">Bạn đã đăng xuất. Xin mời đăng nhập lại.</p><a href="" class="btn">OK</a></div>';
+                        $("#ModalGeneral").html(ShowStr);
+                    } else {
+                        $("#ModalGeneral").html(model);
+                    }
+                }
+            });
+        });
+    });
+    function noticeChangePassWord(success, message) {
+        if (success) {
+            $('#ModalGeneral').modal('hide');
+            $('.modal-backdrop').remove();
+            setTimeout(function () {
+                alert(message);
+            }, 200);
+        } else {
+            alert(message);
+        }
+    };
+</script>

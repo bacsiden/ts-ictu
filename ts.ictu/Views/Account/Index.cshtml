@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ts.ictu.mUser>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="box">
+            <div class="box-title">
+                <h3>
+                    <i class="icon-table"></i>@ViewBag.GroupName</h3>
+            </div>
+            <div class="box-content">
+                <p style="margin-left: 7px;">
+                    @Html.ActionLink("Add user", "NewOrEdit", "Account", null, new { @class = "btn btn-primary" })
+                    <a href="/Account/NewOrEdit" class="btn btn-primary EditItem">Edit</a> <a href="/Account/LockByListID"
+                        class="btn btn-primary LockUser">Lock</a> <a href="/Account/DeleteByListID" class="btn btn-danger DeleteItem confirmDelete">
+                            Delete</a>
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr class="table-flag-blue">
+                            <th style="width: 18px">
+                                <input type="checkbox" class="checkAll" />
+                            </th>
+                            <th>
+                                User name
+                            </th>
+                            <th>
+                                FullName
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Groups
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (ts.ictu.Controllers.UserDAL.ADMIN == item.UserName)
+                            {
+                                continue;
+                            }
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="checkitem" value="@item.ID" />
+                                </td>
+                                <td>
+                                    @Html.ActionLink(string.IsNullOrEmpty(item.UserName) ? " " : item.UserName, "NewOrEdit", new { id = item.ID })
+                                </td>
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>
+                                    @(item.Locked ? "Locked" : "Unlock")
+                                </td>
+                                <td>
+                                    @item.Email
+                                </td>
+                                <td>
+                                    @foreach (var g in item.mGroup)
+                                    {
+                                        @g.Title
+                                        <br />
+                                    }
+                                </td>
+                                <td>
+                                    @if ("admin" != item.UserName && item.UserName != new ts.ictu.Controllers.UserDAL().GetCurrentUser.UserName)
+                                    {
+                                        @Html.ActionLink("Đặt mật khẩu", "SetPassword", new { username = item.UserName })}
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

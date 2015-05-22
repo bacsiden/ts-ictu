@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Upload file to local server";
+}
+<div class="row-fluid dataTables_wrapper" style="min-width: 750px;">
+    <div class="span12">
+        <h3 class="heading">
+            @ViewBag.Title</h3>
+        @Html.ValidationSummary(true)
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="file" value="" />
+            <input type="submit" name="submit" value="Upload" class="btn btn-info" />
+            <a href="@Url.Action("Index")" class="btn">Cancel</a>
+        }
+    </div>
+</div>

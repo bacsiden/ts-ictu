@@ -1,0 +1,60 @@
+﻿@model Webdiyer.WebControls.Mvc.PagedList<ts.ictu.Post>
+@using Webdiyer.WebControls.Mvc
+<div class="header-box">
+    <h3 class="title-h3">
+        @ViewBag.Title</h3>
+    <span class="box-border"></span>
+</div>
+@foreach (var item in Model)
+{
+    <div class="span12 border-post">
+        <div class="span4">
+            <a href="@Url.Action("Details", "Post", new { id = item.ID, h3Title = ViewBag.Title })">
+                <img src="@(item.ImagePost.Count > 0 ? item.ImagePost.FirstOrDefault().Url : "/buzz/images/building-icon.jpg")" />
+            </a>
+        </div>
+        <div class="span8">
+            <div class="blog_post">
+                <h2>
+                    <a href="@Url.Action("Details", "Post", new { id = item.ID, h3Title = ViewBag.Title })">@item.Title</a></h2>
+                <small><span>@item.Created.ToString("dd/MM/yyy")</span></small>
+                <p>
+                    @(item.Content != null && item.Content.Length > 150 ? item.Content.Substring(0, 180) + "..." : item.Content)</p>
+                <p>
+                    <span>
+                        @if (item.Money != null)
+                        {
+                            <label>
+                                Giá:
+                            </label>
+                            <a class="a-txt-cl1" href="#"><strong>@string.Format("{0:N0}", item.Money)</strong>
+                                Triệu</a> 
+                        }
+                    </span><span>
+                        @if (item.LoaiBDSID != null)
+                        {
+                            <label>
+                                Loại:
+                            </label>
+                            <a class="a-txt-cl1" href="#"><strong>@ts.ictu.DB.Entities.LoaiBDS.FirstOrDefault(m => m.ID == item.LoaiBDSID).Title</strong></a> 
+                        }
+                    </span><span>
+                        <label>
+                            Hình thức:
+                        </label>
+                        <a class="a-txt-cl1" href="#"><strong>@(item.HinhThuc == 1 ? "Cần bán" : item.HinhThuc == 2 ? "Cần mua" : "Cho thuê")</strong></a>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>   
+}
+<div class="span8">
+    <div class="dataTables_paginate paging_bootstrap pagination phantrangmvcpager">
+        @Html.AjaxPager(Model, new PagerOptions { ContainerTagName = "ul", PageIndexParameterName = "page", CurrentPagerItemWrapperFormatString = "<li class='active'>{0}</li>", CurrentPageNumberFormatString = "{0}", FirstPageText = "&laquo; ", LastPageText = " &raquo;", NextPageText = "Trước →", PrevPageText = "← Sau", SeparatorHtml = "" }, new AjaxOptions { UpdateTargetId = "AjaxPaging" })
+    </div>
+</div>
+@if (Model.Count == 0)
+{
+    <div class="span12 text-center">Không tìm thấy dữ liệu</div> 
+}

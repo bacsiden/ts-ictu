@@ -1,0 +1,315 @@
+﻿.banner-top img
+{
+    /*background: url('/Content/img/banner-top.jpg') no-repeat top left;     height: 230px;*/ /*background-size: 100%;*/
+    width: 100%;
+}
+
+@media (min-width: 1200px)
+{
+    .container
+    {
+        width: 1024px;
+    }
+}
+
+body
+{
+    background-color: #eee;
+}
+
+#top-menu
+{
+    background-color: #337ab7;
+    border: none;
+    margin-bottom: 0px;
+    border-bottom: solid 2px #b00600;
+}
+#navbar li
+{
+    list-style: none;
+}
+#navbar ul
+{
+    margin: 0;
+}
+#navbar li ul
+{
+    background-color: #337ab7;
+    border-color: #337ab7;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10000;
+    display: none;
+}
+
+#navbar li ul a
+{
+    padding: 15px;
+    border-top: 1px solid #489ae1;
+    min-width: 200px;
+}
+#navbar li a
+{
+    color: #fff;
+    display: block;
+    white-space: nowrap;
+    padding: 13px;
+}
+
+#navbar > ul > li
+{
+    position: relative;
+    display: inline-block;
+}
+
+#navbar > ul > li > a
+{
+    font-weight: bold;
+}
+
+#navbar li a:hover, .navbar-default .navbar-nav > .active > a
+{
+    background: #489ae1;
+    text-decoration: none;
+}
+
+
+/*** Page Details ***/
+h1.title
+{
+    font-size: 26px;
+}
+.panel-details
+{
+    border: 1px solid #faebcc;
+    background: #fff;
+}
+
+.postpadding
+{
+    padding: 0 20px;
+}
+.postpadding .date
+{
+    font-size: 12px;
+    color: #337ab7;
+}
+a.breadcrumbitem
+{
+    color: #b4330c;
+}
+
+.postwrapper .title
+{
+    font-size: 26px;
+    line-height: 35px;
+    margin: 5px 0;
+}
+
+.postwrapper .meta
+{
+    font-size: 11px;
+    font-style: italic;
+}
+
+.postwrapper .meta .date
+{
+    color: #6ccbe7;
+}
+
+.related-news-top
+{
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.related-news ul
+{
+    margin-left: 0;
+    padding-left: 20px;
+}
+
+.related-news li.item
+{
+    list-style-type: disc;
+    width: 97%;
+    margin-left: 0;
+    color: #ff6f2f;
+    line-height: 14px;
+}
+
+.related-news li.item a
+{
+    color: #555;
+    font-size: 13px !important;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: -5px;
+    line-height: 20px;
+}
+
+.postwrapper h2.sapo
+{
+    font-size: 16px;
+    font-weight: 700;
+    margin: 15px 0 15px 0;
+}
+
+.related-news.related-news-top h3
+{
+    border-bottom: solid 1px #ddd;
+    border-top: solid 2px #b00600;
+    padding: 10px 0 5px 10px;
+    margin-bottom: 10px;
+    background-color: #d9edf7;
+    font-size: 1.4em;
+}
+
+.related-news li.item a:hover
+{
+    color: #ff6f2f;
+}
+
+li.item
+{
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.newslistpannel li.item .img
+{
+    float: left;
+    margin-right: 15px;
+}
+
+.newslistpannel .item .postcontent .title, .scrolltopleft .title
+{
+    margin: 9px 0 5px;
+}
+
+.news ul
+{
+    padding-left: 0;
+}
+
+.news ul li
+{
+    list-style: none;
+}
+
+.img-new a img
+{
+    width: 70px;
+}
+
+.imgbanner img
+{
+    width: 100%;
+}
+
+.img-new
+{
+    width: 30%;
+    float: left;
+}
+
+.postcontent
+{
+    width: 70%;
+    float: left;
+}
+.postcontent h4
+{
+    margin-top: 0;
+    font-size: 13px;
+}
+.postcontent100
+{
+    width: 100%;
+    float: left;
+}
+.postcontent100 h4
+{
+    margin-top: 0;
+    font-size: 13px;
+}
+
+.news h3
+{
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #fff;
+    background: #b00600;
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 0;
+}
+.imgbannertwo img
+{
+    width: 100%;
+}
+
+.bg-news h3
+{
+    background: #337ab7;
+    border-bottom: 0 !important;
+    border-top: 0 !important;
+    font-size: 14px;
+    color: #fff;
+    padding: 10px !important;
+    font-weight: bold;
+}
+
+.banner-top
+{
+    position: relative;
+}
+
+#img-language
+{
+    width: 20px;
+    height: 16px;
+}
+#img-language-li
+{
+    float: right !important;
+}
+
+.content img
+{
+    background-size: contain;
+    max-width: 100%;
+}
+
+.title-top-fix
+{
+    background-color: #337AB7;
+    box-shadow: 5px 5px 5px #888888;
+    padding: 5px;
+    color: #fff;
+    font-size: 15px;
+}
+
+#main-content
+{
+    background-color: rgb(222, 226, 231);
+    padding-top: 15px;
+}
+
+.col-md-8
+{
+    padding-right: 0;
+}
+
+.top-buffer .col-md-8
+{
+    padding-right: 15px;
+}
+
+.abs
+{
+    margin: 0 15px;
+}

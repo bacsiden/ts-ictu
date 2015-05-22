@@ -1,0 +1,8 @@
+﻿@model string
+@*@if ((bool)ViewBag.ShowButtonNewOrEdit)*@
+@if (true)
+    {
+    <input type="submit" value="Lưu lại" class="btn btn-info" />
+    <input type="button" value="Hủy" onclick="window.history.back();" class="btn" />
+    }
+    <p></p>

@@ -1,0 +1,58 @@
+﻿@{
+    var lang1 = HttpContext.Current.Request.RequestContext.RouteData.Values["site_language"];
+    var lang = lang1 == null ? "vi" : lang1.ToString();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/favicon.png" rel="icon" type="image/png" /> 
+    <title>@ViewBag.Title</title>
+    <link href="/ContentFront/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/ContentFront/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="/ContentFront/css/Site.css" rel="stylesheet" type="text/css" />
+    <script src="/ContentFront/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="banner-top">
+        <img src="/ContentFront/img/banner-1.png" />
+    </div>
+    <nav id="top-menu" role="navigation">
+        <div class="container">
+            <div id="navbar" class="">
+                <ul>
+                    @*<li class="active"><a href="#">TRANG CHỦ</a></li>
+                    <li>
+                        <a href="#">HOẠT ĐỘNG <span class="caret"></span></a>
+                        <ul>
+                            <li><a href="#">Contact1 sdf</a></li>
+                            <li><a href="#">Contact2 sdf</a></li>
+                        </ul>
+                    </li>*@
+                    @Html.Raw(new ts.ictu.Controllers.BaseController().BuildTopMenu(lang))
+                    @Html.Raw(new ts.ictu.Controllers.BaseController().BuildLanguage(lang))
+                </ul>
+            </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+    </nav>
+    <!-- /.navbar -->
+    <div id="main-content">
+        @RenderBody()
+        <hr>
+    </div>
+    <footer>
+            @Html.Action("Details", "Constant", new { id = "footer" })
+    </footer>
+    <!--/.container-->
+    <script src="/ContentFront/js/bootstrap.min.js"></script>
+    <script src="/ContentFront/js/Site.js"></script>
+</body>
+</html>

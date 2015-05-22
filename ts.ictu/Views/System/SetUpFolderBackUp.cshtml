@@ -1,0 +1,29 @@
+﻿@model ts.ictu.Models.SystemModel
+@{
+    ViewBag.Title = "Config folder backup database";
+}
+<div id="ThongBao">
+    <h3 class="heading">
+        @ViewBag.Title</h3>
+    @using (Html.BeginForm("SetUpFolderBackUp", "System"))
+    {            
+        <div class="row-fluid">
+            <div class="span12">
+                <label class="" for="PathBackupFolder">
+                    Folder contains file backup</label>
+                <div class="span12 input-prepend" style="margin-left: 0">
+                    @Html.TextBoxFor(Model => Model.PathBackupFolder, new { Class = "span8", @placeholder = "Enter filepath folder contains file backup" })
+                    <span class="help-block">@Html.ValidationMessageFor(model => model.PathBackupFolder)</span>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-info" type="submit" onclick="$('#loadingBefore').html($('.waiting').html());">
+                    Save</button>
+                <a class="btn" href="/Config">
+                    Cancel</a>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,45 @@
+﻿@model ts.ictu.HtmlPage
+<h3>
+    Html page</h3>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script>
+    function getCkheight() {
+        return '30em';
+    }
+</script>
+<script src="/Content/ckeditor/ckeditor.js" type="text/javascript"></script>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)                    
+
+    @Html.HiddenFor(model => model.ID)
+    <div class="control-group">
+        <label for="Address">
+            Key url</label>
+        <div class="">
+            <div>
+                @Html.TextBoxFor(model => model.KeyUrl, new { @class = "input-xxlarge" })
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label>
+            Nội dung</label>
+        <div class="">
+            <textarea name="Content">@(Model != null ? Model.Content : null)</textarea>
+            <script>
+                        CKEDITOR.replace('Content', {
+                            filebrowserUploadUrl: '@Url.Action("InsertFile", "Home", new { id = 0 })',
+                            filebrowserImageUploadUrl: '@Url.Action("InsertFile", new { controller = "Home", id = 1 })',
+                            filebrowserFlashUploadUrl: '@Url.Action("InsertFile", "Home", new { id = 2 })',
+                            filebrowserWindowWidth: 600,
+                            filebrowserWindowHeight: 400,
+                        });
+            </script>
+        </div>
+    </div>
+    <div class="form-actions">
+        @Html.Partial("_ShowSaveEdit", "")
+    </div>
+}

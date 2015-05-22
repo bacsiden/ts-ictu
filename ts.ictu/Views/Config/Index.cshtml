@@ -1,0 +1,31 @@
+﻿@model List<ts.ictu.mConfig>
+<div class="row-fluid">
+    <div class="span12">
+        <h3>System config</h3>
+        <table class="table">
+            <tr>
+                <th>
+                    Key
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+            <tr>
+                <td>@Html.ActionLink("Back up folder", "SetUpFolderBackUp","System")</td>
+                <td>@ViewBag.PathBackupFolder</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Key, "NewOrEdit", new { id = item.ID })
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

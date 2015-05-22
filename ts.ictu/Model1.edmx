@@ -1,0 +1,812 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Cate" EntityType="Model.Store.Cate" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Document" EntityType="Model.Store.Document" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HtmlPage" EntityType="Model.Store.HtmlPage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mConfig" EntityType="Model.Store.mConfig" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mConstant" EntityType="Model.Store.mConstant" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Menu" EntityType="Model.Store.Menu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mFunction" EntityType="Model.Store.mFunction" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mFunctionInRole" EntityType="Model.Store.mFunctionInRole" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mGroup" EntityType="Model.Store.mGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mLanguage" EntityType="Model.Store.mLanguage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mMenu" EntityType="Model.Store.mMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mMenuInFunction" EntityType="Model.Store.mMenuInFunction" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mRole" EntityType="Model.Store.mRole" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mRoleInGroup" EntityType="Model.Store.mRoleInGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mUser" EntityType="Model.Store.mUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mUserInGroup" EntityType="Model.Store.mUserInGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Post" EntityType="Model.Store.Post" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PostInCate" EntityType="Model.Store.PostInCate" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_FunctionInRole_Function" Association="Model.Store.FK_FunctionInRole_Function">
+            <End Role="mFunction" EntitySet="mFunction" />
+            <End Role="mFunctionInRole" EntitySet="mFunctionInRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FunctionInRole_Role1" Association="Model.Store.FK_FunctionInRole_Role1">
+            <End Role="mRole" EntitySet="mRole" />
+            <End Role="mFunctionInRole" EntitySet="mFunctionInRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mMenuInFunction_mFunction" Association="Model.Store.FK_mMenuInFunction_mFunction">
+            <End Role="mFunction" EntitySet="mFunction" />
+            <End Role="mMenuInFunction" EntitySet="mMenuInFunction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mMenuInRole_mMenu" Association="Model.Store.FK_mMenuInRole_mMenu">
+            <End Role="mMenu" EntitySet="mMenu" />
+            <End Role="mMenuInFunction" EntitySet="mMenuInFunction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleInGroup_Group" Association="Model.Store.FK_RoleInGroup_Group">
+            <End Role="mGroup" EntitySet="mGroup" />
+            <End Role="mRoleInGroup" EntitySet="mRoleInGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleInGroup_Role1" Association="Model.Store.FK_RoleInGroup_Role1">
+            <End Role="mRole" EntitySet="mRole" />
+            <End Role="mRoleInGroup" EntitySet="mRoleInGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInGroup_Group" Association="Model.Store.FK_UserInGroup_Group">
+            <End Role="mGroup" EntitySet="mGroup" />
+            <End Role="mUserInGroup" EntitySet="mUserInGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInGroup_User" Association="Model.Store.FK_UserInGroup_User">
+            <End Role="mUser" EntitySet="mUser" />
+            <End Role="mUserInGroup" EntitySet="mUserInGroup" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="KeyUrl" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Url" Type="nvarchar" MaxLength="100" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="HtmlPage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="KeyUrl" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Content" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="mConfig">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Multiline" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mConstant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="KeyUrl" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LanguageID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="Url" Type="nvarchar" MaxLength="255" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Oder" Type="int" Nullable="false" />
+          <Property Name="Activated" Type="bit" Nullable="false" />
+          <Property Name="CateID" Type="int" />
+        </EntityType>
+        <EntityType Name="mFunction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="mFunctionInRole">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="FunctionID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="FunctionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="mLanguage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Logo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="mMenu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="TabTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Url" Type="nvarchar" MaxLength="255" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Oder" Type="int" />
+          <Property Name="Inherit" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="mMenuInFunction">
+          <Key>
+            <PropertyRef Name="MenuID" />
+            <PropertyRef Name="FunctionID" />
+          </Key>
+          <Property Name="MenuID" Type="int" Nullable="false" />
+          <Property Name="FunctionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="mRoleInGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AspnetUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="20" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Locked" Type="bit" Nullable="false" />
+          <Property Name="Avata" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="mUserInGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Content" Type="ntext" />
+          <Property Name="Hot" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CateID" Type="int" Nullable="false" />
+          <Property Name="ViewCount" Type="int" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="PostInCate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="CateID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FunctionInRole_Function">
+          <End Role="mFunction" Type="Model.Store.mFunction" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mFunctionInRole" Type="Model.Store.mFunctionInRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mFunction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="mFunctionInRole">
+              <PropertyRef Name="FunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FunctionInRole_Role1">
+          <End Role="mRole" Type="Model.Store.mRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mFunctionInRole" Type="Model.Store.mFunctionInRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="mFunctionInRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mMenuInFunction_mFunction">
+          <End Role="mFunction" Type="Model.Store.mFunction" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mMenuInFunction" Type="Model.Store.mMenuInFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mFunction">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="mMenuInFunction">
+              <PropertyRef Name="FunctionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mMenuInRole_mMenu">
+          <End Role="mMenu" Type="Model.Store.mMenu" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mMenuInFunction" Type="Model.Store.mMenuInFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mMenu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="mMenuInFunction">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleInGroup_Group">
+          <End Role="mGroup" Type="Model.Store.mGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mRoleInGroup" Type="Model.Store.mRoleInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="mRoleInGroup">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleInGroup_Role1">
+          <End Role="mRole" Type="Model.Store.mRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mRoleInGroup" Type="Model.Store.mRoleInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="mRoleInGroup">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInGroup_Group">
+          <End Role="mGroup" Type="Model.Store.mGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mUserInGroup" Type="Model.Store.mUserInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="mUserInGroup">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInGroup_User">
+          <End Role="mUser" Type="Model.Store.mUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="mUserInGroup" Type="Model.Store.mUserInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="mUserInGroup">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="GISPortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="mConfig" EntityType="Model.mConfig" />
+          <EntitySet Name="mFunction" EntityType="Model.mFunction" />
+          <EntitySet Name="mGroup" EntityType="Model.mGroup" />
+          <EntitySet Name="mMenu" EntityType="Model.mMenu" />
+          <EntitySet Name="mRole" EntityType="Model.mRole" />
+          <EntitySet Name="mUser" EntityType="Model.mUser" />
+          <AssociationSet Name="mFunctionInRole" Association="Model.mFunctionInRole">
+            <End Role="mFunction" EntitySet="mFunction" />
+            <End Role="mRole" EntitySet="mRole" />
+          </AssociationSet>
+          <AssociationSet Name="mMenuInFunction" Association="Model.mMenuInFunction">
+            <End Role="mFunction" EntitySet="mFunction" />
+            <End Role="mMenu" EntitySet="mMenu" />
+          </AssociationSet>
+          <AssociationSet Name="mRoleInGroup" Association="Model.mRoleInGroup">
+            <End Role="mGroup" EntitySet="mGroup" />
+            <End Role="mRole" EntitySet="mRole" />
+          </AssociationSet>
+          <AssociationSet Name="mUserInGroup" Association="Model.mUserInGroup">
+            <End Role="mGroup" EntitySet="mGroup" />
+            <End Role="mUser" EntitySet="mUser" />
+          </AssociationSet>
+          <EntitySet Name="mConstant" EntityType="Model.mConstant" />
+          <EntitySet Name="Cate" EntityType="Model.Cate" />
+          <EntitySet Name="Document" EntityType="Model.Document" />
+          <EntitySet Name="HtmlPage" EntityType="Model.HtmlPage" />
+          <EntitySet Name="Menu" EntityType="Model.Menu" />
+          <EntitySet Name="Post" EntityType="Model.Post" />
+          <EntitySet Name="PostInCate" EntityType="Model.PostInCate" />
+          <EntitySet Name="mLanguage" EntityType="Model.mLanguage" />
+        </EntityContainer>
+        <EntityType Name="mConfig">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Multiline" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mFunction">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="mRole" Relationship="Model.mFunctionInRole" FromRole="mFunction" ToRole="mRole" />
+          <NavigationProperty Name="mMenu" Relationship="Model.mMenuInFunction" FromRole="mFunction" ToRole="mMenu" />
+        </EntityType>
+        <EntityType Name="mGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="mRole" Relationship="Model.mRoleInGroup" FromRole="mGroup" ToRole="mRole" />
+          <NavigationProperty Name="mUser" Relationship="Model.mUserInGroup" FromRole="mGroup" ToRole="mUser" />
+        </EntityType>
+        <EntityType Name="mMenu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="TabTitle" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Url" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Oder" Type="Int32" />
+          <Property Name="Inherit" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="mFunction" Relationship="Model.mMenuInFunction" FromRole="mMenu" ToRole="mFunction" />
+        </EntityType>
+        <EntityType Name="mRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="mFunction" Relationship="Model.mFunctionInRole" FromRole="mRole" ToRole="mFunction" />
+          <NavigationProperty Name="mGroup" Relationship="Model.mRoleInGroup" FromRole="mRole" ToRole="mGroup" />
+        </EntityType>
+        <EntityType Name="mUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AspnetUserID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Sex" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Birthday" Type="DateTime" />
+          <Property Name="Address" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="Avata" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="mGroup" Relationship="Model.mUserInGroup" FromRole="mUser" ToRole="mGroup" />
+        </EntityType>
+        <Association Name="mFunctionInRole">
+          <End Role="mFunction" Type="Model.mFunction" Multiplicity="*" />
+          <End Role="mRole" Type="Model.mRole" Multiplicity="*" />
+        </Association>
+        <Association Name="mMenuInFunction">
+          <End Role="mFunction" Type="Model.mFunction" Multiplicity="*" />
+          <End Role="mMenu" Type="Model.mMenu" Multiplicity="*" />
+        </Association>
+        <Association Name="mRoleInGroup">
+          <End Role="mGroup" Type="Model.mGroup" Multiplicity="*" />
+          <End Role="mRole" Type="Model.mRole" Multiplicity="*" />
+        </Association>
+        <Association Name="mUserInGroup">
+          <End Role="mGroup" Type="Model.mGroup" Multiplicity="*" />
+          <End Role="mUser" Type="Model.mUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="mConstant">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="KeyUrl" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Content" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="LanguageID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KeyUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Url" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Content" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HtmlPage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="KeyUrl" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ParentID" />
+          <Property Type="String" Name="Url" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Icon" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Oder" Nullable="false" />
+          <Property Type="Boolean" Name="Activated" Nullable="false" />
+          <Property Type="Int32" Name="CateID" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Hot" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <Property Type="Int32" Name="CateID" Nullable="false" />
+          <Property Type="Int32" Name="ViewCount" Nullable="false" />
+          <Property Type="Boolean" Name="Deleted" Nullable="false" />
+          <Property Type="Int32" Name="UserID" />
+          <Property Type="String" Name="ImageUrl" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Summary" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PostInCate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PostID" Nullable="false" />
+          <Property Type="Int32" Name="CateID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mLanguage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Logo" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="GISPortalEntities">
+          <EntitySetMapping Name="mConfig">
+            <EntityTypeMapping TypeName="Model.mConfig">
+              <MappingFragment StoreEntitySet="mConfig">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Multiline" ColumnName="Multiline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mFunction">
+            <EntityTypeMapping TypeName="Model.mFunction">
+              <MappingFragment StoreEntitySet="mFunction">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mGroup">
+            <EntityTypeMapping TypeName="Model.mGroup">
+              <MappingFragment StoreEntitySet="mGroup">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mMenu">
+            <EntityTypeMapping TypeName="Model.mMenu">
+              <MappingFragment StoreEntitySet="mMenu">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="TabTitle" ColumnName="TabTitle" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Oder" ColumnName="Oder" />
+                <ScalarProperty Name="Inherit" ColumnName="Inherit" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mRole">
+            <EntityTypeMapping TypeName="Model.mRole">
+              <MappingFragment StoreEntitySet="mRole">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mUser">
+            <EntityTypeMapping TypeName="Model.mUser">
+              <MappingFragment StoreEntitySet="mUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AspnetUserID" ColumnName="AspnetUserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="Avata" ColumnName="Avata" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="mFunctionInRole" TypeName="Model.mFunctionInRole" StoreEntitySet="mFunctionInRole">
+            <EndProperty Name="mFunction">
+              <ScalarProperty Name="ID" ColumnName="FunctionID" />
+            </EndProperty>
+            <EndProperty Name="mRole">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="mMenuInFunction" TypeName="Model.mMenuInFunction" StoreEntitySet="mMenuInFunction">
+            <EndProperty Name="mFunction">
+              <ScalarProperty Name="ID" ColumnName="FunctionID" />
+            </EndProperty>
+            <EndProperty Name="mMenu">
+              <ScalarProperty Name="ID" ColumnName="MenuID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="mRoleInGroup" TypeName="Model.mRoleInGroup" StoreEntitySet="mRoleInGroup">
+            <EndProperty Name="mGroup">
+              <ScalarProperty Name="ID" ColumnName="GroupID" />
+            </EndProperty>
+            <EndProperty Name="mRole">
+              <ScalarProperty Name="ID" ColumnName="RoleID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="mUserInGroup" TypeName="Model.mUserInGroup" StoreEntitySet="mUserInGroup">
+            <EndProperty Name="mGroup">
+              <ScalarProperty Name="ID" ColumnName="GroupID" />
+            </EndProperty>
+            <EndProperty Name="mUser">
+              <ScalarProperty Name="ID" ColumnName="UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="mConstant">
+            <EntityTypeMapping TypeName="Model.mConstant">
+              <MappingFragment StoreEntitySet="mConstant">
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cate">
+            <EntityTypeMapping TypeName="Model.Cate">
+              <MappingFragment StoreEntitySet="Cate">
+                <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="Model.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HtmlPage">
+            <EntityTypeMapping TypeName="Model.HtmlPage">
+              <MappingFragment StoreEntitySet="HtmlPage">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="Model.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="Oder" ColumnName="Oder" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="Model.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Hot" ColumnName="Hot" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostInCate">
+            <EntityTypeMapping TypeName="Model.PostInCate">
+              <MappingFragment StoreEntitySet="PostInCate">
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mLanguage">
+            <EntityTypeMapping TypeName="Model.mLanguage">
+              <MappingFragment StoreEntitySet="mLanguage">
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="Model.mConfig" Width="1.5" PointX="7.75" PointY="1.75" Height="1.5923063151041657" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.mFunction" Width="1.5" PointX="0.75" PointY="3.75" Height="1.7566536458333322" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.mGroup" Width="1.5" PointX="0.75" PointY="1" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.mMenu" Width="1.5" PointX="3" PointY="3.375" Height="2.5783902994791674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.mRole" Width="1.5" PointX="3" PointY="0.75" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.mUser" Width="1.5" PointX="3" PointY="7.625" Height="3.0714322916666745" IsExpanded="true" />
+        <AssociationConnector Association="Model.mFunctionInRole" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.75" />
+          <ConnectorPoint PointX="2.625" PointY="3.375" />
+          <ConnectorPoint PointX="2.625" PointY="1.6283268229166659" />
+          <ConnectorPoint PointX="3" PointY="1.6283268229166659" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.mMenuInFunction" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.6595793229166667" />
+          <ConnectorPoint PointX="2.7291666666666665" PointY="4.6595793229166658" />
+          <ConnectorPoint PointX="2.8958333333333335" PointY="4.6595793229166667" />
+          <ConnectorPoint PointX="3" PointY="4.6595793229166667" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.mRoleInGroup" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.1299902343749988" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="2.1299902343749983" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="2.1299902343749988" />
+          <ConnectorPoint PointX="3" PointY="2.1299902343749988" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.mUserInGroup" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.5299976227964747" />
+          <ConnectorPoint PointX="2.5660744349011213" PointY="2.8460720576975951" />
+          <ConnectorPoint PointX="2.6839255650988791" PointY="2.9639231878953538" />
+          <ConnectorPoint PointX="2.8125" PointY="3.0924976227964747" />
+          <ConnectorPoint PointX="2.8125" PointY="9.1607161458333373" />
+          <ConnectorPoint PointX="3" PointY="9.1607161458333373" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.mConstant" Width="1.5" PointX="10.375" PointY="5.75" Height="1.5923063151041674" />
+        <EntityTypeShape EntityType="Model.Cate" Width="1.5" PointX="5.375" PointY="4.75" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="Model.Document" Width="1.5" PointX="7.375" PointY="4.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="Model.HtmlPage" Width="1.5" PointX="5.375" PointY="7.75" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="Model.Menu" Width="1.5" PointX="7.375" PointY="7.75" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="Model.Post" Width="1.5" PointX="9.375" PointY="8.75" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="Model.PostInCate" Width="1.5" PointX="10.375" PointY="0.75" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="Model.mLanguage" Width="1.5" PointX="5.375" PointY="11.75" Height="1.7879850260416674" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

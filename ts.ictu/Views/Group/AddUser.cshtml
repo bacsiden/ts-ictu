@@ -1,0 +1,25 @@
+﻿@model ts.ictu.mUser
+<h3>
+    Add user to Group <a href="/Group/UsersInGroup/@ViewBag.GroupID">@ViewBag.GroupName</a></h3>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@Html.ValidationSummary(true, "Add user to Group unsuccess")
+@using (Html.BeginForm("DoAddUser", "Group", new { groupID = ViewBag.GroupID }))
+{
+    <div>
+        <div class="control-group">
+            <label class="control-label">
+                Username</label>
+            <div class="controls">
+                <select data-placeholder="Select Driver" name="ID" class="chosen-with-diselect input-xlarge">
+                    @Html.Raw(ViewBag.dataUserName)
+                </select>                
+            </div>
+            <div class="clearfix">
+                <input type="submit" value="OK" class="btn btn-primary" />
+                <button type="button" class="btn" onclick="javascript:window.history.go(-1);">
+                    Cancel</button>
+            </div>
+        </div>
+    </div>
+}
