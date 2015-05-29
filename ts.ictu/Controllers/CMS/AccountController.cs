@@ -7,11 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using ts.ictu.Models;
+using shop.cnc.Models;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace ts.ictu.Controllers
+namespace shop.cnc.Controllers
 {
     public class UserDAL : DB.BaseClass<mUser>
     {
@@ -541,7 +541,7 @@ namespace ts.ictu.Controllers
 
         public static string temp1 = "<li class='{3}'><a href=\"{1}\" class='menu-item-a {5}'>{2}<span>&nbsp;{0}</span>{4} </a>{6}</li>";
         public static string temp2 = "<ul class=\"submenu\">{0}</ul>";
-        public static string BuildMenu(string languageCode)
+        public static string BuildMenu()
         {
             var user = new UserDAL().GetCurrentUser;
             string s = "";
@@ -571,7 +571,7 @@ namespace ts.ictu.Controllers
                     }
                     else
                     {
-                        s += string.Format(temp1, item.Title, "/" + languageCode + item.Url, item.Icon, tmp, "", "", "");
+                        s += string.Format(temp1, item.Title, item.Url, item.Icon, tmp, "", "", "");
                     }
 
                 }

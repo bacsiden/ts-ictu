@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="GISPortalEntities">
+    <EntitySetMapping Name="mConfig">
+      <EntityTypeMapping TypeName="Model.mConfig">
+        <MappingFragment StoreEntitySet="mConfig">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Multiline" ColumnName="Multiline" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mFunction">
+      <EntityTypeMapping TypeName="Model.mFunction">
+        <MappingFragment StoreEntitySet="mFunction">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mGroup">
+      <EntityTypeMapping TypeName="Model.mGroup">
+        <MappingFragment StoreEntitySet="mGroup">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mMenu">
+      <EntityTypeMapping TypeName="Model.mMenu">
+        <MappingFragment StoreEntitySet="mMenu">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="TabTitle" ColumnName="TabTitle" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="Oder" ColumnName="Oder" />
+          <ScalarProperty Name="Inherit" ColumnName="Inherit" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mRole">
+      <EntityTypeMapping TypeName="Model.mRole">
+        <MappingFragment StoreEntitySet="mRole">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mUser">
+      <EntityTypeMapping TypeName="Model.mUser">
+        <MappingFragment StoreEntitySet="mUser">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AspnetUserID" ColumnName="AspnetUserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Locked" ColumnName="Locked" />
+          <ScalarProperty Name="Avata" ColumnName="Avata" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="mFunctionInRole" TypeName="Model.mFunctionInRole" StoreEntitySet="mFunctionInRole">
+      <EndProperty Name="mFunction">
+        <ScalarProperty Name="ID" ColumnName="FunctionID" />
+      </EndProperty>
+      <EndProperty Name="mRole">
+        <ScalarProperty Name="ID" ColumnName="RoleID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="mMenuInFunction" TypeName="Model.mMenuInFunction" StoreEntitySet="mMenuInFunction">
+      <EndProperty Name="mFunction">
+        <ScalarProperty Name="ID" ColumnName="FunctionID" />
+      </EndProperty>
+      <EndProperty Name="mMenu">
+        <ScalarProperty Name="ID" ColumnName="MenuID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="mRoleInGroup" TypeName="Model.mRoleInGroup" StoreEntitySet="mRoleInGroup">
+      <EndProperty Name="mGroup">
+        <ScalarProperty Name="ID" ColumnName="GroupID" />
+      </EndProperty>
+      <EndProperty Name="mRole">
+        <ScalarProperty Name="ID" ColumnName="RoleID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="mUserInGroup" TypeName="Model.mUserInGroup" StoreEntitySet="mUserInGroup">
+      <EndProperty Name="mGroup">
+        <ScalarProperty Name="ID" ColumnName="GroupID" />
+      </EndProperty>
+      <EndProperty Name="mUser">
+        <ScalarProperty Name="ID" ColumnName="UserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="mConstant">
+      <EntityTypeMapping TypeName="Model.mConstant">
+        <MappingFragment StoreEntitySet="mConstant">
+          <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cate">
+      <EntityTypeMapping TypeName="Model.Cate">
+        <MappingFragment StoreEntitySet="Cate">
+          <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Document">
+      <EntityTypeMapping TypeName="Model.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HtmlPage">
+      <EntityTypeMapping TypeName="Model.HtmlPage">
+        <MappingFragment StoreEntitySet="HtmlPage">
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menu">
+      <EntityTypeMapping TypeName="Model.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="CateID" ColumnName="CateID" />
+          <ScalarProperty Name="Activated" ColumnName="Activated" />
+          <ScalarProperty Name="Oder" ColumnName="Oder" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="Model.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+          <ScalarProperty Name="CateID" ColumnName="CateID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Hot" ColumnName="Hot" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostInCate">
+      <EntityTypeMapping TypeName="Model.PostInCate">
+        <MappingFragment StoreEntitySet="PostInCate">
+          <ScalarProperty Name="CateID" ColumnName="CateID" />
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mLanguage">
+      <EntityTypeMapping TypeName="Model.mLanguage">
+        <MappingFragment StoreEntitySet="mLanguage">
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

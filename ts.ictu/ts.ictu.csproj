@@ -558,7 +558,6 @@
     <Content Include="Views\Home\SystemConfig.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_ListMenu.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\AccountTask.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -589,7 +588,6 @@
     <Content Include="Views\Function\Index.cshtml" />
     <Content Include="Views\Function\Menu.cshtml" />
     <Content Include="Views\Account\AccessDenied.cshtml" />
-    <Content Include="Views\Shared\_MenuButtonNewEditOrDelete.cshtml" />
     <Content Include="Views\Shared\_ShowSaveEdit.cshtml" />
     <Content Include="Views\Account\SetPass.cshtml" />
     <Content Include="Views\BackupAndRestore\Backup.cshtml" />
@@ -621,7 +619,6 @@
     <Content Include="Views\Post\ListDeleted.cshtml" />
     <Content Include="Views\Post\_ListDeleted.cshtml" />
     <Content Include="Views\Post\_ListPostDetails.cshtml" />
-    <Content Include="Views\Shared\_AdminLanguage.cshtml" />
     <None Include="Content\ckeditor\plugins\scayt\LICENSE.md" />
     <None Include="Content\ckeditor\plugins\scayt\README.md" />
     <None Include="Content\ckeditor\plugins\wsc\LICENSE.md" />

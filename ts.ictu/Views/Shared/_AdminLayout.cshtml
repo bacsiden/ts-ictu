@@ -1,7 +1,5 @@
 ﻿@{
-    var lang1 = HttpContext.Current.Request.RequestContext.RouteData.Values["site_language"];
-    var lang = lang1 == null ? "vi" : lang1.ToString();
-    ViewBag.Menu = ts.ictu.Controllers.AccountController.BuildMenu(lang);
+    ViewBag.Menu = shop.cnc.Controllers.AccountController.BuildMenu();
     var ctrler = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
 }
 <!DOCTYPE html>
@@ -57,7 +55,7 @@
     <div id="navbar" class="navbar">
         <div class="navbar-inner">
             <div class="container-fluid Fluild-Edit">
-                <a href="#" class="brand topLogo"><big>GIS PORTAL - @(new ts.ictu.Controllers.BaseController().CurrentLanguage.Title)</big></a> <a href="#" class="btn-navbar collapsed"
+                <a href="#" class="brand topLogo"><big>SHOP - CNC</big></a> <a href="#" class="btn-navbar collapsed"
                     data-toggle="collapse" data-target=".nav-collapse" style="float: left;"><i class="icon-reorder">
                     </i></a>
                 <ul class="nav flaty-nav pull-right OptionLogin" id="OptionLogin">
