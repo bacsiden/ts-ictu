@@ -2,9 +2,13 @@
 @using ts.ictu;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "GIS - PORTAL";
+    ViewBag.Title = "Trung tâm liên kết đào tạo - ICTU";
     var db = ts.ictu.DB.Entities;
-    
+    var catetttsobj = Model.FirstOrDefault(m => m.Code == CateCode.TTTS);
+    int cateidttts = catetttsobj == null ? 0 : catetttsobj.ID;
+    var lstttts = db.Post.Where(m => m.CateID == cateidttts).ToList();
+
+    var lstDaoTaoCate = db.Cate.Where(m => m.Code == CateCode.DaoTao).ToList();
 }
 <script type="text/javascript">
     $(document).ready(function () {
@@ -16,145 +20,97 @@
         })
     });
 </script>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-8  top-buffer">
-                <div class="panel panel-warning">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            @for (int i = 0; i < Model.Count; i++)
-                            {
-                                <li data-target="#carousel-example-generic" data-slide-to="@i" class="@(i == 0 ? " active" : "")">
-                                </li>
-                            }
-                        </ol>
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            @{
-                                int dem = 1;
-                                foreach (var item in Model)
-                                {
-                                    var listPublish = db.Post.Where(m => m.CateID == item.ID && m.Status == (int)PostStatus.Enabled).Take(8).OrderByDescending(m => m.ID).ToList();
-                                    if (listPublish.Count > 0)
-                                    {
-                                        var listnews = listPublish.Where(m => m.Hot).ToList();
-                                        var news = listnews.Count > 0 ? listnews[0] : listPublish.FirstOrDefault();
-                                        var news1 = (listnews.Count > 1) ? listnews[1] : listPublish.FirstOrDefault(m => m.ID != news.ID);
-                                <div class="item @(dem++ == 1 ? " active" : "")">
-                                    <div class="row top-buffer" style="overflow: hidden;">
-                                        <div class="title-top-fix abs">
-                                            @item.Title</div>
-                                        <div class="col-md-4">
-                                            <div class="col-md-12" style="padding-right: 0;">
-                                                <h4>
-                                                    <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news.ID, news.Title) })">
-                                                        @news.Title
-                                                    </a>
-                                                </h4>
-                                                <p class="text-description">@Html.Raw(@news.Summary)</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 ">
-                                            <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news.ID, news.Title) })" class="newsHeight" style="height:250px">
-                                                <img src="@(@news.ImageUrl)" alt="..." style="" class="img-thumbnail">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    @*@if (news1 != null)
-                                    {
-                                        <hr />
-                                        <div class="row">
-                                            <div class="col-md-4" style="padding-right: 0;">
-                                                <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news1.ID, news1.Title) })" class="newsHeight">
-                                                    <img src="@(@news1.ImageUrl)" alt="..." style="" class="col-md-12 img-thumbnail">
-                                                </a>
-                                                <div class="col-md-12" style="text-align: justify;">
-                                                    <h5>
-                                                        <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news1.ID, news1.Title) })">
-                                                            @news1.Title
-                                                        </a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                @foreach (var item1 in listPublish)
-                                                {
-                                                    if (item1.ID != news.ID && item1.ID != news1.ID)
-                                                    {
-                                                    <ul>
-                                                        <li><a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item1.ID, item1.Title) })">@item1.Title</a></li>
-                                                    </ul>
-                                                    }
-                                                }
-                                            </div>
-                                        </div>
-                                    }*@
-                                </div>
-                                    }
-
-                                }
-                            }
-                        </div>
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
-                                href="#carousel-example-generic" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
-                                </span></a>
-                    </div>
-                </div>
-                <!--Danh mục tin-->
-                @foreach (var item in Model)
+<div class="panel panel-warning">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            @for (int i = 0; i < lstttts.Count; i++)
+            {
+                <li data-target="#carousel-example-generic" data-slide-to="@i" class="@(i == 0 ? " active" : "")">
+                </li>
+            }
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            @{
+                int dem = 1;
+                foreach (var item in lstttts)
                 {
-                    var listPublish = db.Post.Where(m => m.CateID == item.ID && m.Status == (int)PostStatus.Enabled).Take(8).OrderByDescending(m => m.ID).ToList();
-                    if (listPublish.Count > 0)
-                    {
-                    <div class="panel panel-info box-index-news">
-                        <div class="panel-heading">
-                            <a class="text-primary" href="@Url.Action("CateDetails", new { id = Common.CreateURLParam(item.ID, item.Title) })">
-                                <strong>@item.Title</strong> </a>
-                        </div>
-                        <div class="panel-body">
-                            @foreach (var news in listPublish)
-                            {
-                                if (news.Hot)
-                                {
-                                <div class="media">
-                                    <a class="pull-left" href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news.ID, news.Title) })" class="newsHeight" style="height:150px;">
-                                        <img class="media-object img-thumbnail" src="@(news.ImageUrl)" alt="..." style="width:150px;">
+                <div class="item @(dem++ == 1 ? " active" : "")">
+                    <div class="row top-buffer" style="overflow: hidden;">
+                        <div class="title-top-fix abs">
+                            Thông tin tuyển sinh</div>
+                        <div class="col-md-4">
+                            <div class="col-md-12" style="padding-right: 0;">
+                                <h4>
+                                    <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })">
+                                        @item.Title
                                     </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">
-                                            <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news.ID, news.Title) })">@Html.Raw(news.Title)</a></h4>
-                                        <p class="text-description">@Html.Raw(@news.Summary)</p>
-                                    </div>
-                                </div>
-                                                               break;
-                                }
-                            }
-                            <div class="media-body">
-                                <br />
-                                @foreach (var news in listPublish)
-                                {
-                                    if (!news.Hot)
-                                    {
-                                    <ul>
-                                        <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news.ID, news.Title) })">
-                                            <li>@news.Title</li></a>
-                                    </ul>
-                                    }
-                                }
+                                </h4>
+                                <p class="text-description">@Html.Raw(item.Summary)</p>
                             </div>
                         </div>
+                        <div class="col-md-8 ">
+                            <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })" class="newsHeight" style="height:250px">
+                                <img src="@(item.ImageUrl)" alt="..." style="" class="img-thumbnail">
+                            </a>
+                        </div>
                     </div>
+                </div>
+                }
+            }
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
+                href="#carousel-example-generic" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
+                </span></a>
+    </div>
+</div>
+<!--Danh mục tin-->
+@foreach (var item in lstDaoTaoCate)
+{
+    var listPublish = db.Post.Where(m => m.CateID == item.ID && m.Status == (int)PostStatus.Enabled).Take(8).OrderByDescending(m => m.ID).ToList();
+    if (listPublish.Count > 0)
+    {
+    <div class="panel panel-info box-index-news">
+        <div class="panel-heading">
+            <a class="text-primary" href="@Url.Action("CateDetails", new { id = Common.CreateURLParam(item.ID, item.Title) })">
+                <strong>@item.Title</strong> </a>
+        </div>
+        <div class="panel-body">
+            @foreach (var news in listPublish)
+            {
+                if (news.Hot)
+                {
+                <div class="media">
+                    <a class="pull-left" href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news.ID, news.Title) })" class="newsHeight" style="height:150px;">
+                        <img class="media-object img-thumbnail" src="@(news.ImageUrl)" alt="..." style="width:150px;">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news.ID, news.Title) })">@Html.Raw(news.Title)</a></h4>
+                        <p class="text-description">@Html.Raw(@news.Summary)</p>
+                    </div>
+                </div>
+                                               break;
+                }
+            }
+            <div class="media-body">
+                <br />
+                @foreach (var news in listPublish)
+                {
+                    if (!news.Hot)
+                    {
+                    <ul>
+                        <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(news.ID, news.Title) })">
+                            <li>@news.Title</li></a>
+                    </ul>
                     }
                 }
-                <!--Danh mục tin-->
-            </div>
-            <div class="col-md-4">
-                @Html.Action("RightPanel", "Post", new { model = Model })
             </div>
         </div>
     </div>
-</div>
+    }
+}
+<!--Danh mục tin-->

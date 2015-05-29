@@ -25,6 +25,15 @@ namespace ts.ictu
 
         public static string SESSION_CAPTCHA = "SESSION_CAPTCHA";
     }
+    public class CateCode
+    {
+        public const string TTTS = "TTTS";
+        public const string DaoTao = "DaoTao";
+    }
+    public class MenuCode
+    {
+        public const string DaoTao = "DaoTao";
+    }
     public enum HinhThuc
     {
         CanBan = 1,

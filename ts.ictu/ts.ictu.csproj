@@ -74,16 +74,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CMS\AccountController.cs" />
     <Compile Include="Controllers\CMS\ConstantController.cs" />
     <Compile Include="Controllers\CMS\LanguageController.cs" />
+    <Compile Include="Controllers\LearningRegister.cs" />
     <Compile Include="Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LearningRegisterModel.cs" />
     <Compile Include="Utilities\Common.cs" />
     <Compile Include="Utilities\Constants.cs" />
-    <Compile Include="Controllers\CMS\AccountController.cs" />
     <Compile Include="Controllers\CMS\BaseController.cs" />
     <Compile Include="Controllers\CMS\ConfigController.cs" />
     <Compile Include="Controllers\CMS\HtmlPageController.cs" />
@@ -118,17 +120,9 @@
     <Content Include="ContentFront\css\dashboard.css" />
     <Content Include="ContentFront\css\Site.css" />
     <Content Include="ContentFront\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="ContentFront\img\banner-1.png" />
-    <Content Include="ContentFront\img\banner-career.jpg" />
-    <Content Include="ContentFront\img\banner-top.jpg" />
-    <Content Include="ContentFront\img\Banner_Satellite1.jpg" />
-    <Content Include="ContentFront\img\china.jpg" />
-    <Content Include="ContentFront\img\england.png" />
-    <Content Include="ContentFront\img\IridiumSite_v2_AboutBanners_IndustryLeadership.jpg" />
-    <Content Include="ContentFront\img\satellite-banner200.jpg" />
-    <Content Include="ContentFront\img\Space.jpg" />
-    <Content Include="ContentFront\img\vega-space-banner.jpg" />
-    <Content Include="ContentFront\img\vietnam.jpg" />
+    <Content Include="ContentFront\img\banner.jpg" />
+    <Content Include="ContentFront\img\dangki.png" />
+    <Content Include="ContentFront\img\hotline.gif" />
     <Content Include="ContentFront\js\bootstrap.min.js" />
     <Content Include="ContentFront\js\jquery-1.10.2.min.js" />
     <Content Include="ContentFront\js\Site.js" />
@@ -514,6 +508,7 @@
     <None Include="ContentFront\fonts\glyphicons-halflings-regular.eot" />
     <None Include="ContentFront\fonts\glyphicons-halflings-regular.ttf" />
     <None Include="ContentFront\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="ContentFront\img\hotline.psd" />
     <None Include="Content\assets\font-awesome\font\fontawesome-webfont.svg" />
     <Content Include="Content\assets\gritter\css\jquery.gritter.css" />
     <Content Include="Content\assets\gritter\images\ie-spacer.gif" />
@@ -609,7 +604,7 @@
     <Content Include="Views\Post\AdminIndex.cshtml" />
     <Content Include="Views\Post\_AdminIndex.cshtml" />
     <Content Include="Views\HtmlPage\Index.cshtml" />
-    <Content Include="Views\HtmlPage\NewOrEdit.cshtml" />
+    <Content Include="Views\HtmlPage\AdminEdit.cshtml" />
     <Content Include="Views\HtmlPage\Details.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_TopButton.cshtml" />
@@ -637,6 +632,11 @@
     <Content Include="Views\Shared\404.cshtml" />
     <Content Include="Views\Constant\Index.cshtml" />
     <Content Include="Views\Constant\NewOrEdit.cshtml" />
+    <Content Include="Views\Shared\_RightPanel.cshtml" />
+    <Content Include="Views\LearningRegister\DangKy.cshtml" />
+    <Content Include="Views\LearningRegister\AdminIndex.cshtml" />
+    <Content Include="Views\LearningRegister\DangKySuccess.cshtml" />
+    <Content Include="Views\LearningRegister\Complete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />
@@ -658,7 +658,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>8583</DevelopmentServerPort>
+          <DevelopmentServerPort>30085</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

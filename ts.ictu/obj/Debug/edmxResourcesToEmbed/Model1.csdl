@@ -24,13 +24,14 @@
       <End Role="mUser" EntitySet="mUser" />
     </AssociationSet>
     <EntitySet Name="mConstant" EntityType="Model.mConstant" />
-    <EntitySet Name="Cate" EntityType="Model.Cate" />
     <EntitySet Name="Document" EntityType="Model.Document" />
     <EntitySet Name="HtmlPage" EntityType="Model.HtmlPage" />
-    <EntitySet Name="Menu" EntityType="Model.Menu" />
     <EntitySet Name="Post" EntityType="Model.Post" />
     <EntitySet Name="PostInCate" EntityType="Model.PostInCate" />
     <EntitySet Name="mLanguage" EntityType="Model.mLanguage" />
+    <EntitySet Name="Cate" EntityType="Model.Cate" />
+    <EntitySet Name="Menu" EntityType="Model.Menu" />
+    <EntitySet Name="LearningRegister" EntityType="Model.LearningRegister" />
   </EntityContainer>
   <EntityType Name="mConfig">
     <Key>
@@ -128,14 +129,6 @@
     <Property Type="String" Name="Content" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="LanguageID" Nullable="false" />
   </EntityType>
-  <EntityType Name="Cate">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="KeyUrl" MaxLength="100" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="Document">
     <Key>
       <PropertyRef Name="ID" />
@@ -152,19 +145,6 @@
     <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="KeyUrl" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Menu">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Type="Int32" Name="ParentID" />
-    <Property Type="String" Name="Url" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="Icon" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="Int32" Name="Oder" Nullable="false" />
-    <Property Type="Boolean" Name="Activated" Nullable="false" />
-    <Property Type="Int32" Name="CateID" />
   </EntityType>
   <EntityType Name="Post">
     <Key>
@@ -199,5 +179,44 @@
     <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Code" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="Logo" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Cate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="KeyUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Code" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Order" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ParentID" />
+    <Property Type="String" Name="Url" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Icon" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Oder" Nullable="false" />
+    <Property Type="Boolean" Name="Activated" Nullable="false" />
+    <Property Type="Int32" Name="CateID" />
+    <Property Type="String" Name="Code" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="LearningRegister">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FullName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Birthday" Nullable="false" />
+    <Property Type="DateTime" Name="Created" Nullable="false" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+    <Property Type="String" Name="Class" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Gender" />
   </EntityType>
 </Schema>

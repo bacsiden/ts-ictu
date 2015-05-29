@@ -4,92 +4,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var cate = (Cate)ViewBag.cate;
     ViewBag.Title = cate.Title;
-    var db = ts.ictu.DB.Entities;
-    var lsthot = Model.Where(m => m.Hot && m.ImageUrl != null && m.ImageUrl != "").ToList();
-    var lst = Model.Where(m => !m.Hot).ToList();
-    int dem = 1;
 }
-<script>
-    $(document).ready(function () {
-        $(".TieuDeSlide-Panel").text($(".active .TieuDeSlide").text()).fadeIn("slow");
-        $('#carousel-example-generic').on('slid.bs.carousel', function () {
-            // do something…
-            $(".TieuDeSlide-Panel").fadeOut();
-            $(".TieuDeSlide-Panel").text($(".active .TieuDeSlide").text()).fadeIn("slow");
-        })
-    });
-</script>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-8  top-buffer">
-                <div class="panel panel-warning">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            @for (int i = 0; i < Model.Count; i++)
-                            {
-                                <li data-target="#carousel-example-generic" data-slide-to="@i" class="@(i == 0 ? " active" : "")">
-                                </li>
-                            }
-                        </ol>
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            @foreach (var item in lsthot)
-                            {
-                                <div class="item @(dem++ == 1 ? " active" : "")">
-                                    <div class="row top-buffer" style="overflow: hidden;">
-                                    <div class="title-top-fix abs">
-                                            @cate.Title</div>
-                                        <div class="col-md-4">
-                                            <div class="col-md-12" style="padding-right: 0;">
-                                                <h4>
-                                                    <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })">
-                                                        @item.Title
-                                                    </a>
-                                                </h4>
-                                                <p class="text-description">@Html.Raw(@item.Summary)</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 ">
-                                            <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })" class="newsHeight" style="height:250px">
-                                                <img src="@(@item.ImageUrl)" alt="..." style="" class="img-thumbnail">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
-                                href="#carousel-example-generic" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
-                                </span></a>
-                    </div>
-                </div>
-                <!--Danh mục tin-->
-                @foreach (var item in lst)
-                {
-                    <div class="panel panel-warning box-index-news">
-                        <div class="panel-body">
-                            <div class="media">
-                                <a class="pull-left" href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })" class="newsHeight" style="height:150px;">
-                                    <img class="media-object img-thumbnail" src="@(item.ImageUrl)" alt="..." style="width:150px;">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })">@Html.Raw(item.Title)</a></h4>
-                                    <p class="text-description">@Html.Raw(@item.Summary)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-                <!--Danh mục tin-->
-            </div>
-            <div class="col-md-4">
-                @Html.Action("RightPanel", "Post", new { model = Model })
+<div class="panel panel-warning">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="row top-buffer" style="overflow: hidden;">
+                <div class="title-top-fix abs">
+                    @cate.Title</div>
             </div>
         </div>
     </div>
 </div>
+<!--Danh mục tin-->
+@foreach (var item in Model)
+{
+    <div class="panel panel-warning box-index-news">
+        <div class="panel-body">
+            <div class="media">
+                <a class="pull-left" href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })"
+    class="newsHeight" style="height:110px;">
+                    <img class="media-object img-thumbnail"
+    src="@(item.ImageUrl)" alt="..." style="width:150px;">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })">@Html.Raw(item.Title)</a></h4>
+                    <p class="text-description">@Html.Raw(@item.Summary)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}

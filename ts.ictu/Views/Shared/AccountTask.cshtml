@@ -6,10 +6,6 @@
         <i class="icon-caret-down"></i>
         <!-- BEGIN User Dropdown -->
         <ul class="dropdown-menu dropdown-navbar" id="user_menu">
-            @foreach (var item in ts.ictu.Common.GetListLanguage())
-            {
-                <li><a href="@("/" + item.Code + "/Cate/AdminIndex")"><i class="icon-off"></i>&nbsp @item.Title</a></li>
-            }
             <li><a href="#ModalGeneral" role="button" data-toggle="modal" class="ChangePassWord">
                 <i class="icon-cog"></i>Đổi mật khẩu</a>
                 <li><a href="/Account/Logoff"><i class="icon-off"></i>Thoát </a></li>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="/favicon.png" rel="icon" type="image/png" /> 
+    <link href="/favicon.png" rel="icon" type="image/png" />
     <title>@ViewBag.Title</title>
     <link href="/ContentFront/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/ContentFront/css/dashboard.css" rel="stylesheet" type="text/css" />
@@ -23,29 +23,31 @@
 </head>
 <body>
     <div class="banner-top">
-        <img src="/ContentFront/img/banner-1.png" />
+        <img src="/ContentFront/img/banner.jpg" />
     </div>
     <nav id="top-menu" role="navigation">
         <div class="container">
             <div id="navbar" class="">
                 <ul>
-                    @*<li class="active"><a href="#">TRANG CHỦ</a></li>
-                    <li>
-                        <a href="#">HOẠT ĐỘNG <span class="caret"></span></a>
-                        <ul>
-                            <li><a href="#">Contact1 sdf</a></li>
-                            <li><a href="#">Contact2 sdf</a></li>
-                        </ul>
-                    </li>*@
-                    @Html.Raw(new ts.ictu.Controllers.BaseController().BuildTopMenu(lang))
-                    @Html.Raw(new ts.ictu.Controllers.BaseController().BuildLanguage(lang))
+                    @Html.Raw(new ts.ictu.Controllers.BaseController().BuildTopMenu())
                 </ul>
             </div><!-- /.nav-collapse -->
         </div><!-- /.container -->
     </nav>
     <!-- /.navbar -->
     <div id="main-content">
-        @RenderBody()
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-8  top-buffer">
+                        @RenderBody()
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Partial("~/Views/Shared/_RightPanel.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
         <hr>
     </div>
     <footer>

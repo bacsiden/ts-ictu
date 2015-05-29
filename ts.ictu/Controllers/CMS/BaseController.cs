@@ -397,7 +397,7 @@ namespace ts.ictu.Controllers
         //0: active, 1 url, 2 title, 3 icon, 4 child
         public string temp1 = @"<li{0}><a href='{1}'>{2} {3}</a>{4}</li>";
         public string temp2 = "<ul>{0}</ul>";
-        public string BuildTopMenu(string lang)
+        public string BuildTopMenu()
         {
             var user = new UserDAL().GetCurrentUser;
             string s = "";
@@ -411,13 +411,18 @@ namespace ts.ictu.Controllers
                 if (item.ParentID == null || item.ParentID.Value == 0)
                 {
                     var listChild = lst.Where(m => m.ParentID == item.ID).OrderBy(m => m.Oder).ToList();
-                    if (listChild.Count > 0)
+                    if (listChild.Count > 0 || item.Code == MenuCode.DaoTao)
                     {
                         string subLI = "";
                         foreach (var itemSub in listChild)
                         {
                             subLI += string.Format("<li><a href=\"{0}\">{1}</a></li>", BuilUrlByCate(itemSub.CateID, lstCate, itemSub.Url), itemSub.Title);
                         }
+                        if (item.Code == MenuCode.DaoTao)
+                            foreach (var cate in lstCate.Where(m => m.Code == CateCode.DaoTao))
+                            {
+                                subLI += string.Format("<li><a href=\"{0}\">{1}</a></li>", BuilUrlByCate(cate.ID, lstCate, null), cate.Title);
+                            }
                         string subMenu = string.Format(temp2, subLI);
                         s += string.Format(temp1, null, BuilUrlByCate(item.CateID, lstCate, item.Url), item.Title, icondrop, subMenu);
                     }
@@ -434,12 +439,12 @@ namespace ts.ictu.Controllers
             string url = null;
             if (cateID == null || cateID == 0)
             {
-                url = "/" + itemurl;
+                url = itemurl;
             }
             else
             {
                 var cate = lstCate.FirstOrDefault(m => m.ID == cateID);
-                url = (cate == null) ? "#" : "/" + "/channel/" + cate.KeyUrl;//u.Action("Channel", "Post", new { id = cate.KeyUrl });
+                url = (cate == null) ? "#" : "/channel/" + cate.KeyUrl;//Common.HttpContext.Action("Channel", "Post", new { id = cate.KeyUrl });
             }
             return url;
         }

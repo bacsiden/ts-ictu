@@ -76,7 +76,7 @@
     if ($('input:checkbox:checked').length == $('input:checkbox.checkitem').length) {
         $(".checkAll").prop('checked', true);
     }
-    
+
 
 
     // Event click with button Edit & Delete
@@ -247,20 +247,12 @@
             $(".EndDate").removeAttr('Disabled');
         }
     });
-    $(".report a:not(.report-fieldset)").click(function () {
-        var isAllDate = $(".AllDate").is(":checked");
+    $(".learning-filter").click(function () {
         var startDate = $(".StartDate").val();
         var endDate = $(".EndDate").val();
-        var selectDispatcher = $(".SelectDispatcher").val();
-        var selectDriver = $(".SelectDriver").val();
-        var selectCompany = $(".SelectCompany").val();
-        var url = $(this).attr('href');
-        var newurl = addParam(addParam(addParam(addParam(addParam(url, "selectCompany", selectCompany), "startDate", startDate), "endDate", endDate), "selectDriver", selectDriver), "selectDispatcher", selectDispatcher);
-        if (isAllDate) {
-            newurl = addParam(addParam(addParam(addParam(url, "selectCompany", selectCompany), "allDate", true), "selectDriver", selectDriver), "selectDispatcher", selectDispatcher);
-        }
-        window.open(newurl, '_blank');
-        return false;
+        var url = "/LearningRegister" + $(this).attr('data-href');
+        var newurl = addParam(addParam(url, "startDate", startDate), "endDate", endDate);
+        location.href = newurl;
     });
 
     //--------------------------------
@@ -269,7 +261,7 @@
 });                   //----------------END DOCUMENT READY FUNCTION -------------------------------  
 
 
-$(document).on( "click",".checkAll", function () {
+$(document).on("click", ".checkAll", function () {
     $(".EditItem").hide();
     if ($(".checkitem").length > 0) {
         if ($(this).is(':checked')) {
@@ -283,7 +275,7 @@ $(document).on( "click",".checkAll", function () {
         }
     }
 });
-$(document).on( "click", ".checkitem",function () {
+$(document).on("click", ".checkitem", function () {
     $(".DeleteItem").show();
     var numberOfChecked = $('input:checkbox:checked').length;
     var numberItem = $('input:checkbox.checkitem').length;

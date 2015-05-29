@@ -4,12 +4,13 @@
         <h3>
             Html Page</h3>
         <div class="row-fluid">
-            <p style="margin-left: 7px;">
-                @Html.ActionLink("Tạo page", "NewOrEdit", null, new { @class = "btn btn-primary" })
-            </p>
+            @Html.Partial("_TopButton", "HtmlPage")
         </div>
         <table class="table">
             <tr>
+                <th>
+                    <input type="checkbox" name="" value="" class="checkAll" />
+                </th>
                 <th>
                     Key url
                 </th>
@@ -23,6 +24,9 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        <input type="checkbox" name="checkOwner" value="@item.ID" class="checkitem"/>
+                    </td>
                     <td>
                         @Html.ActionLink(item.KeyUrl, "NewOrEdit", new { id = item.ID })
                     </td>

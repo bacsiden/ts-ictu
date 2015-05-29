@@ -1,14 +1,16 @@
-﻿@model List<ts.ictu.Cate>
-@using ts.ictu;
+﻿@using ts.ictu;
 @{
     var db = DB.Entities;
-    var lstnew = db.Post.Where(m => !m.Hot && m.Status == (int)PostStatus.Enabled).OrderByDescending(m => m.ID).ToList();
+    var lstnew = db.Post.Where(m => m.Status == (int)PostStatus.Enabled).OrderByDescending(m => m.ID).ToList();
 }
 <div class="imgbanner">
-    <img src="http://i.bnet.com/blogs/o3b-network-satellite-fleet-image.jpg">
+    <a href="@Url.Action("DangKy", "LearningRegister")"><img src="/ContentFront/img/dangki.png"></a>
 </div>
-<div class="news">
-    <h3>Các tin mới</h3>
+<div class="imgbanner">
+    <img src="/ContentFront/img/hotline.gif">
+</div>
+<div class="related-news bg-news related-news-top">
+    <h3  style="background-color: #b00600;">Các tin mới nhất</h3>
     <ul>
         @foreach (var item in lstnew)
         {
@@ -42,13 +44,7 @@
         }
     </ul>
 </div>
-<div class="imgbannertwo">
-    <img src="http://www.ictu.edu.vn/images/banners/img_tusachphapluat.png">
-</div>
 <div class="related-news bg-news related-news-top">
     <h3  style="background-color: #b00600;">Các đối tác</h3>
     @Html.Action("GetContent", "HtmlPage", new { id = "cac-doi-tac" })
-</div>
-<div class="imgbannertwo">
-    <img src="http://www.ictu.edu.vn/images/banners/VBHC3.jpg">
 </div>

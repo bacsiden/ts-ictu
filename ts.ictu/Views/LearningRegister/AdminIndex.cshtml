@@ -1,0 +1,83 @@
+﻿@model List<ts.ictu.LearningRegister>
+<div class="row-fluid">
+    <div class="span12">
+        <h3>
+            Danh sách đăng ký học online</h3>
+        <div class="span2">
+            <label for="StartDate">
+                Từ ngày</label>
+            <input type="text" name="StartDate" value="@DateTime.Now.AddDays(1 - Convert.ToDouble(DateTime.Now.DayOfWeek)).ToString("dd/MM/yyyy")" class="span12 date-picker StartDate" />
+        </div>
+        <div class="span2">
+            <label for="EndDate">
+                Đến ngày</label>
+            <input type="text" name="EndDate" value="@DateTime.Now.ToString("dd/MM/yyyy")" class="span12 date-picker EndDate" />
+        </div>
+        <div class="span3"><label for="EndDate">&nbsp</label>
+        <a href="javascript:void(0)" data-href="/AdminIndex" class="btn btn-info  learning-filter">Tìm kiếm</a>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    <input type="checkbox" name="" value="" class="checkAll" />
+                </th>
+                <th>
+                    Họ tên
+                </th>
+                <th>
+                    Giới tính
+                </th>
+                <th>
+                    Ngày sinh
+                </th>
+                <th>
+                    SĐT
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Lớp đào tạo
+                </th>
+                <th>
+                    Ngày đăng ký
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="checkOwner" value="@item.ID" class="checkitem"/>
+                    </td>
+                    <td>
+                        @item.FullName
+                    </td>
+                    <td>
+                        @(item.Gender == true ? "Nam" : "Nữ")
+                    </td>
+                    <td>
+                        @String.Format("{0}", item.Birthday.ToString("dd/MM/yyyy"))
+                    </td>
+                    <td>
+                        @item.Phone
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>
+                        @item.Class
+                    </td>
+                    <td>
+                        @item.Created.ToString("dd/MM/yyyy")
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

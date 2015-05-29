@@ -7,11 +7,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using shop.cnc.Models;
+using ts.ictu.Models;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace shop.cnc.Controllers
+namespace ts.ictu.Controllers
 {
     public class UserDAL : DB.BaseClass<mUser>
     {

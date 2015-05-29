@@ -4,6 +4,7 @@
     <EntitySet Name="Cate" EntityType="Model.Store.Cate" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Document" EntityType="Model.Store.Document" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HtmlPage" EntityType="Model.Store.HtmlPage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LearningRegister" EntityType="Model.Store.LearningRegister" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="mConfig" EntityType="Model.Store.mConfig" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="mConstant" EntityType="Model.Store.mConstant" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Menu" EntityType="Model.Store.Menu" store:Type="Tables" Schema="dbo" />
@@ -59,6 +60,8 @@
     <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="KeyUrl" Type="varchar" MaxLength="100" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Order" Type="int" />
   </EntityType>
   <EntityType Name="Document">
     <Key>
@@ -76,6 +79,21 @@
     <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="KeyUrl" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="Content" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="LearningRegister">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="Birthday" Type="datetime" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Class" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Gender" Type="bit" />
   </EntityType>
   <EntityType Name="mConfig">
     <Key>
@@ -107,6 +125,7 @@
     <Property Name="Oder" Type="int" Nullable="false" />
     <Property Name="Activated" Type="bit" Nullable="false" />
     <Property Name="CateID" Type="int" />
+    <Property Name="Code" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="mFunction">
     <Key>

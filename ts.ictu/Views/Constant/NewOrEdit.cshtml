@@ -27,16 +27,8 @@
         <label>
             Nội dung</label>
         <div class="">
-            <textarea name="Content">@(Model != null ? Model.Content : null)</textarea>
-            <script>
-                        CKEDITOR.replace('Content', {
-                            filebrowserUploadUrl: '@Url.Action("InsertFile", "Home", new { id = 0 })',
-                            filebrowserImageUploadUrl: '@Url.Action("InsertFile", new { controller = "Home", id = 1 })',
-                            filebrowserFlashUploadUrl: '@Url.Action("InsertFile", "Home", new { id = 2 })',
-                            filebrowserWindowWidth: 600,
-                            filebrowserWindowHeight: 400,
-                        });
-            </script>
+            <textarea name="Content" rows="15" class="span10">@(Model != null ? Model.Content : null)</textarea>
+            
         </div>
     </div>
     <div class="form-actions">

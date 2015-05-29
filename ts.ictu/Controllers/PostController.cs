@@ -204,7 +204,7 @@ namespace ts.ictu.Controllers
             var obj = db.Post.FirstOrDefault(m => m.ID == id1);
             if (obj == null)
                 return NotFound();
-            var lstRelate = db.Post.Where(m => m.CateID == obj.CateID && m.Status == (int)PostStatus.Enabled)
+            var lstRelate = db.Post.Where(m => m.ID != id1 && m.CateID == obj.CateID && m.Status == (int)PostStatus.Enabled)
                 .OrderByDescending(m => m.ID).Take(8).ToList();
             ViewBag.lstRelate = lstRelate;
             return View(obj);

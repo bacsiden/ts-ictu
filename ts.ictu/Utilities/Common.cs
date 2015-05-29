@@ -12,6 +12,10 @@ namespace ts.ictu
 {
     public class Common
     {
+        public static HttpContext HttpContext
+        {
+            get { return HttpContext.Current; }
+        }
         public static string RouteData(string key)
         {
             var obj=  HttpContext.Current.Request.RequestContext.RouteData.Values[key];

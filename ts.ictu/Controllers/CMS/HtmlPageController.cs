@@ -14,7 +14,7 @@ namespace ts.ictu.Controllers
             return View(DB.Entities.HtmlPage.ToList());
         }
         [Authorize]
-        public ActionResult NewOrEdit(int? id = 0)
+        public ActionResult AdminEdit(int? id = 0)
         {
             var db = DB.Entities;
 
@@ -23,7 +23,7 @@ namespace ts.ictu.Controllers
         }
         [Authorize]
         [HttpPost, ValidateInput(false)]
-        public ActionResult NewOrEdit(HtmlPage model, FormCollection frm)
+        public ActionResult AdminEdit(HtmlPage model, FormCollection frm)
         {
             var db = DB.Entities;
             try
@@ -48,27 +48,44 @@ namespace ts.ictu.Controllers
             }
         }
         [Authorize]
-        public ActionResult Delete(int id = 0)
+        public ActionResult AdminDelete(string arrayID = "")
         {
-            var db = DB.Entities;
             try
             {
-                var obj = db.HtmlPage.FirstOrDefault(m => m.ID == id);
-                db.HtmlPage.DeleteObject(obj);
-                return View("Index");
+                // TODO: Add delete logic here
+                var lstID = arrayID.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                var db = DB.Entities;
+                if (lstID.Length > 0)
+                {
+                    foreach (var item in lstID)
+                    {
+                        int tmpID = int.Parse(item);
+                        var obj = db.HtmlPage.FirstOrDefault(m => m.ID == tmpID);
+                        db.HtmlPage.DeleteObject(obj);
+                    }
+                    db.SaveChanges();
+                }
             }
             catch
             {
-                return RedirectToAction("Index");
             }
+            return RedirectToAction("Index");
         }
 
         public ActionResult Details(string id)
         {
             var db = DB.Entities;
 
-            var obj = db.HtmlPage.FirstOrDefault(m => m.KeyUrl == id);
+            var obj = db.HtmlPage.FirstOrDefault(m => m.KeyUrl.Equals(id, StringComparison.OrdinalIgnoreCase));
             return View(obj);
+        }
+
+        public string GetContent(string id)
+        {
+            var db = DB.Entities;
+
+            var obj = db.HtmlPage.FirstOrDefault(m => m.KeyUrl.Equals(id, StringComparison.OrdinalIgnoreCase));
+            return obj == null ? null : obj.Content;
         }
     }
 }

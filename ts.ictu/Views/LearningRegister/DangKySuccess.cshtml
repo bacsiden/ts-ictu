@@ -1,0 +1,26 @@
+﻿@model ts.ictu.LearningRegister
+@using ts.ictu;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-warning box-index-news">
+    <div class="panel-body">
+        <h4>
+            Vui lòng kiểm tra lại các thông tin của bạn</h4>
+            <br />
+            <p>Khóa học: <strong>@Model.Class</strong></p>
+            <p>Họ tên: <strong>@Model.FullName</strong></p>
+            <p>Giới tính: <strong>@(Model.Gender == true?"Nam" : "Nữ")</strong></p>
+            <p>Ngày sinh: <strong>@(Model.Birthday.ToString("dd/MM/yyyy"))</strong></p>
+            <p>Số điện thoại: <strong>@Model.Phone</strong></p>
+            <p>Email: <strong>@Model.Email</strong></p>
+            <p>Địa chỉ liện hệ: <strong>@Model.Address</strong></p>
+            <br />
+            <p class="text-danger">Nếu các thông tin của bạn đã chính xác, nhấn <strong class="text-primary">Hoàn tất</strong>
+             để xác nhận, ngược lại, nhấn <strong class="text-primary">Đăng ký lại</strong> để nhập lại các thông tin</p>
+            <div class="col-sm-12">
+                <a class="btn btn-primary" href="@Url.Action("Complete", "LearningRegister")">Hoàn tất</a>
+                <a class="btn btn-default" href="@Url.Action("DangKy", "LearningRegister", new { id= Model.ID})">Đăng ký lại</a>
+            </div>
+    </div>
+</div>

@@ -7,38 +7,27 @@
     var cate = db.Cate.FirstOrDefault(m => m.ID == Model.CateID);
     var lstRelate = (List<Post>)ViewBag.lstRelate;
 }
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-8">
-                <div class="panel-details">
-                    <div class="title-top-fix">@cate.Title</div>
-                    <div class="postpadding">
-                        <h1 class="title">
-                            @Model.Title
-                        </h1>
-                        <p class="date">
-                            @Model.Created.ToString("dd/MM/yyyy")
-                        </p>
-                        <div class="content">
-                            @Html.Raw(Model.Content)
-                        </div>
-                    </div>
-                    <div class="related-news related-news-top">
-                        <h3>@cate.Title</h3>
-                        <ul>
-                            @foreach (var item in lstRelate)
-                            {
-                                <li class="item"><a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })"
-                            title="@item.Title">@item.Title</a></li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                @Html.Action("RightPanel", "Post", new { model = Model })
-            </div>
+<div class="panel-details">
+    <div class="title-top-fix">@cate.Title</div>
+    <div class="postpadding">
+        <h1 class="title">
+            @Model.Title
+        </h1>
+        <p class="date">
+            @Model.Created.ToString("dd/MM/yyyy")
+        </p>
+        <div class="content">
+            @Html.Raw(Model.Content)
         </div>
+    </div>
+    <div class="related-news related-news-top">
+        <h3>@cate.Title</h3>
+        <ul>
+            @foreach (var item in lstRelate)
+            {
+                <li class="item"><a href="@Url.Action("Details", "Post", new { id = Common.CreateURLParam(item.ID, item.Title) })"
+                            title="@item.Title">@item.Title</a></li>
+            }
+        </ul>
     </div>
 </div>

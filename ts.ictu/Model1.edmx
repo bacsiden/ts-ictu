@@ -9,6 +9,7 @@
           <EntitySet Name="Cate" EntityType="Model.Store.Cate" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Document" EntityType="Model.Store.Document" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HtmlPage" EntityType="Model.Store.HtmlPage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LearningRegister" EntityType="Model.Store.LearningRegister" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mConfig" EntityType="Model.Store.mConfig" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mConstant" EntityType="Model.Store.mConstant" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Menu" EntityType="Model.Store.Menu" store:Type="Tables" Schema="dbo" />
@@ -64,6 +65,8 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="KeyUrl" Type="varchar" MaxLength="100" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Order" Type="int" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -81,6 +84,21 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="KeyUrl" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Content" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LearningRegister">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Birthday" Type="datetime" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Class" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Gender" Type="bit" />
         </EntityType>
         <EntityType Name="mConfig">
           <Key>
@@ -112,6 +130,7 @@
           <Property Name="Oder" Type="int" Nullable="false" />
           <Property Name="Activated" Type="bit" Nullable="false" />
           <Property Name="CateID" Type="int" />
+          <Property Name="Code" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="mFunction">
           <Key>
@@ -373,13 +392,14 @@
             <End Role="mUser" EntitySet="mUser" />
           </AssociationSet>
           <EntitySet Name="mConstant" EntityType="Model.mConstant" />
-          <EntitySet Name="Cate" EntityType="Model.Cate" />
           <EntitySet Name="Document" EntityType="Model.Document" />
           <EntitySet Name="HtmlPage" EntityType="Model.HtmlPage" />
-          <EntitySet Name="Menu" EntityType="Model.Menu" />
           <EntitySet Name="Post" EntityType="Model.Post" />
           <EntitySet Name="PostInCate" EntityType="Model.PostInCate" />
           <EntitySet Name="mLanguage" EntityType="Model.mLanguage" />
+          <EntitySet Name="Cate" EntityType="Model.Cate" />
+          <EntitySet Name="Menu" EntityType="Model.Menu" />
+          <EntitySet Name="LearningRegister" EntityType="Model.LearningRegister" />
         </EntityContainer>
         <EntityType Name="mConfig">
           <Key>
@@ -477,14 +497,6 @@
           <Property Type="String" Name="Content" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="LanguageID" Nullable="false" />
         </EntityType>
-        <EntityType Name="Cate">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="KeyUrl" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Document">
           <Key>
             <PropertyRef Name="ID" />
@@ -501,19 +513,6 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="KeyUrl" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Menu">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ParentID" />
-          <Property Type="String" Name="Url" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Icon" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="Oder" Nullable="false" />
-          <Property Type="Boolean" Name="Activated" Nullable="false" />
-          <Property Type="Int32" Name="CateID" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -548,6 +547,45 @@
           <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Logo" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="KeyUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Order" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ParentID" />
+          <Property Type="String" Name="Url" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Icon" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Oder" Nullable="false" />
+          <Property Type="Boolean" Name="Activated" Nullable="false" />
+          <Property Type="Int32" Name="CateID" />
+          <Property Type="String" Name="Code" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LearningRegister">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FullName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Birthday" Nullable="false" />
+          <Property Type="DateTime" Name="Created" Nullable="false" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <Property Type="String" Name="Class" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Gender" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -666,15 +704,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Cate">
-            <EntityTypeMapping TypeName="Model.Cate">
-              <MappingFragment StoreEntitySet="Cate">
-                <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Document">
             <EntityTypeMapping TypeName="Model.Document">
               <MappingFragment StoreEntitySet="Document">
@@ -690,20 +719,6 @@
               <MappingFragment StoreEntitySet="HtmlPage">
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Menu">
-            <EntityTypeMapping TypeName="Model.Menu">
-              <MappingFragment StoreEntitySet="Menu">
-                <ScalarProperty Name="CateID" ColumnName="CateID" />
-                <ScalarProperty Name="Activated" ColumnName="Activated" />
-                <ScalarProperty Name="Oder" ColumnName="Oder" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -741,6 +756,48 @@
                 <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cate">
+            <EntityTypeMapping TypeName="Model.Cate">
+              <MappingFragment StoreEntitySet="Cate">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="KeyUrl" ColumnName="KeyUrl" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="Model.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CateID" ColumnName="CateID" />
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="Oder" ColumnName="Oder" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LearningRegister">
+            <EntityTypeMapping TypeName="Model.LearningRegister">
+              <MappingFragment StoreEntitySet="LearningRegister">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -799,13 +856,14 @@
           <ConnectorPoint PointX="3" PointY="9.1607161458333373" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.mConstant" Width="1.5" PointX="10.375" PointY="5.75" Height="1.5923063151041674" />
-        <EntityTypeShape EntityType="Model.Cate" Width="1.5" PointX="5.375" PointY="4.75" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="Model.Document" Width="1.5" PointX="7.375" PointY="4.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="Model.HtmlPage" Width="1.5" PointX="5.375" PointY="7.75" Height="1.5956835937500031" />
-        <EntityTypeShape EntityType="Model.Menu" Width="1.5" PointX="7.375" PointY="7.75" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="Model.Post" Width="1.5" PointX="9.375" PointY="8.75" Height="3.3263964843750031" />
         <EntityTypeShape EntityType="Model.PostInCate" Width="1.5" PointX="10.375" PointY="0.75" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="Model.mLanguage" Width="1.5" PointX="5.375" PointY="11.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="Model.Cate" Width="1.5" PointX="11.375" PointY="8.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="Model.Menu" Width="1.5" PointX="11.375" PointY="11.75" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="Model.LearningRegister" Width="1.5" PointX="12.375" PointY="0.75" Height="2.9417936197916674" />
       </Diagram>
     </Diagrams>
   </Designer>

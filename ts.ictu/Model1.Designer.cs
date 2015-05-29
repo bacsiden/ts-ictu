@@ -189,22 +189,6 @@ namespace ts.ictu
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Cate> Cate
-        {
-            get
-            {
-                if ((_Cate == null))
-                {
-                    _Cate = base.CreateObjectSet<Cate>("Cate");
-                }
-                return _Cate;
-            }
-        }
-        private ObjectSet<Cate> _Cate;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Document> Document
         {
             get
@@ -233,22 +217,6 @@ namespace ts.ictu
             }
         }
         private ObjectSet<HtmlPage> _HtmlPage;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Menu> Menu
-        {
-            get
-            {
-                if ((_Menu == null))
-                {
-                    _Menu = base.CreateObjectSet<Menu>("Menu");
-                }
-                return _Menu;
-            }
-        }
-        private ObjectSet<Menu> _Menu;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -297,6 +265,54 @@ namespace ts.ictu
             }
         }
         private ObjectSet<mLanguage> _mLanguage;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Cate> Cate
+        {
+            get
+            {
+                if ((_Cate == null))
+                {
+                    _Cate = base.CreateObjectSet<Cate>("Cate");
+                }
+                return _Cate;
+            }
+        }
+        private ObjectSet<Cate> _Cate;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Menu> Menu
+        {
+            get
+            {
+                if ((_Menu == null))
+                {
+                    _Menu = base.CreateObjectSet<Menu>("Menu");
+                }
+                return _Menu;
+            }
+        }
+        private ObjectSet<Menu> _Menu;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<LearningRegister> LearningRegister
+        {
+            get
+            {
+                if ((_LearningRegister == null))
+                {
+                    _LearningRegister = base.CreateObjectSet<LearningRegister>("LearningRegister");
+                }
+                return _LearningRegister;
+            }
+        }
+        private ObjectSet<LearningRegister> _LearningRegister;
 
         #endregion
 
@@ -359,14 +375,6 @@ namespace ts.ictu
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Cate EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCate(Cate cate)
-        {
-            base.AddObject("Cate", cate);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Document EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToDocument(Document document)
@@ -380,14 +388,6 @@ namespace ts.ictu
         public void AddToHtmlPage(HtmlPage htmlPage)
         {
             base.AddObject("HtmlPage", htmlPage);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Menu EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMenu(Menu menu)
-        {
-            base.AddObject("Menu", menu);
         }
     
         /// <summary>
@@ -412,6 +412,30 @@ namespace ts.ictu
         public void AddTomLanguage(mLanguage mLanguage)
         {
             base.AddObject("mLanguage", mLanguage);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Cate EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCate(Cate cate)
+        {
+            base.AddObject("Cate", cate);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Menu EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMenu(Menu menu)
+        {
+            base.AddObject("Menu", menu);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the LearningRegister EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLearningRegister(LearningRegister learningRegister)
+        {
+            base.AddObject("LearningRegister", learningRegister);
         }
 
         #endregion
@@ -523,6 +547,54 @@ namespace ts.ictu
         private global::System.String _KeyUrl;
         partial void OnKeyUrlChanging(global::System.String value);
         partial void OnKeyUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                OnCodeChanging(value);
+                ReportPropertyChanging("Code");
+                _Code = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Code");
+                OnCodeChanged();
+            }
+        }
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
+        partial void OnCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Order
+        {
+            get
+            {
+                return _Order;
+            }
+            set
+            {
+                OnOrderChanging(value);
+                ReportPropertyChanging("Order");
+                _Order = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Order");
+                OnOrderChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Order;
+        partial void OnOrderChanging(Nullable<global::System.Int32> value);
+        partial void OnOrderChanged();
 
         #endregion
 
@@ -759,6 +831,287 @@ namespace ts.ictu
         private global::System.String _Content;
         partial void OnContentChanging(global::System.String value);
         partial void OnContentChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="LearningRegister")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class LearningRegister : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new LearningRegister object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="birthday">Initial value of the Birthday property.</param>
+        /// <param name="created">Initial value of the Created property.</param>
+        /// <param name="status">Initial value of the Status property.</param>
+        /// <param name="class">Initial value of the Class property.</param>
+        public static LearningRegister CreateLearningRegister(global::System.Int32 id, global::System.DateTime birthday, global::System.DateTime created, global::System.Int32 status, global::System.String @class)
+        {
+            LearningRegister learningRegister = new LearningRegister();
+            learningRegister.ID = id;
+            learningRegister.Birthday = birthday;
+            learningRegister.Created = created;
+            learningRegister.Status = status;
+            learningRegister.Class = @class;
+            return learningRegister;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FullName
+        {
+            get
+            {
+                return _FullName;
+            }
+            set
+            {
+                OnFullNameChanging(value);
+                ReportPropertyChanging("FullName");
+                _FullName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FullName");
+                OnFullNameChanged();
+            }
+        }
+        private global::System.String _FullName;
+        partial void OnFullNameChanging(global::System.String value);
+        partial void OnFullNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Email
+        {
+            get
+            {
+                return _Email;
+            }
+            set
+            {
+                OnEmailChanging(value);
+                ReportPropertyChanging("Email");
+                _Email = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Email");
+                OnEmailChanged();
+            }
+        }
+        private global::System.String _Email;
+        partial void OnEmailChanging(global::System.String value);
+        partial void OnEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Phone
+        {
+            get
+            {
+                return _Phone;
+            }
+            set
+            {
+                OnPhoneChanging(value);
+                ReportPropertyChanging("Phone");
+                _Phone = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Phone");
+                OnPhoneChanged();
+            }
+        }
+        private global::System.String _Phone;
+        partial void OnPhoneChanging(global::System.String value);
+        partial void OnPhoneChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Address
+        {
+            get
+            {
+                return _Address;
+            }
+            set
+            {
+                OnAddressChanging(value);
+                ReportPropertyChanging("Address");
+                _Address = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Address");
+                OnAddressChanged();
+            }
+        }
+        private global::System.String _Address;
+        partial void OnAddressChanging(global::System.String value);
+        partial void OnAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Birthday
+        {
+            get
+            {
+                return _Birthday;
+            }
+            set
+            {
+                OnBirthdayChanging(value);
+                ReportPropertyChanging("Birthday");
+                _Birthday = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Birthday");
+                OnBirthdayChanged();
+            }
+        }
+        private global::System.DateTime _Birthday;
+        partial void OnBirthdayChanging(global::System.DateTime value);
+        partial void OnBirthdayChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Created
+        {
+            get
+            {
+                return _Created;
+            }
+            set
+            {
+                OnCreatedChanging(value);
+                ReportPropertyChanging("Created");
+                _Created = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Created");
+                OnCreatedChanged();
+            }
+        }
+        private global::System.DateTime _Created;
+        partial void OnCreatedChanging(global::System.DateTime value);
+        partial void OnCreatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Status
+        {
+            get
+            {
+                return _Status;
+            }
+            set
+            {
+                OnStatusChanging(value);
+                ReportPropertyChanging("Status");
+                _Status = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Status");
+                OnStatusChanged();
+            }
+        }
+        private global::System.Int32 _Status;
+        partial void OnStatusChanging(global::System.Int32 value);
+        partial void OnStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Class
+        {
+            get
+            {
+                return _Class;
+            }
+            set
+            {
+                OnClassChanging(value);
+                ReportPropertyChanging("Class");
+                _Class = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Class");
+                OnClassChanged();
+            }
+        }
+        private global::System.String _Class;
+        partial void OnClassChanging(global::System.String value);
+        partial void OnClassChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Gender
+        {
+            get
+            {
+                return _Gender;
+            }
+            set
+            {
+                OnGenderChanging(value);
+                ReportPropertyChanging("Gender");
+                _Gender = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Gender");
+                OnGenderChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Gender;
+        partial void OnGenderChanging(Nullable<global::System.Boolean> value);
+        partial void OnGenderChanged();
 
         #endregion
 
@@ -1256,6 +1609,30 @@ namespace ts.ictu
         private Nullable<global::System.Int32> _CateID;
         partial void OnCateIDChanging(Nullable<global::System.Int32> value);
         partial void OnCateIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Code
+        {
+            get
+            {
+                return _Code;
+            }
+            set
+            {
+                OnCodeChanging(value);
+                ReportPropertyChanging("Code");
+                _Code = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Code");
+                OnCodeChanged();
+            }
+        }
+        private global::System.String _Code;
+        partial void OnCodeChanging(global::System.String value);
+        partial void OnCodeChanged();
 
         #endregion
 
